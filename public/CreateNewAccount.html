@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <section class="form-section">
+      <h2 class="page-heading">SIGN UP</h2>
+      <div class="logo-container">
+        <img src="KPH.jpg" alt="Logo" class="logo" />
+      </div>
+      <div class="login-box">
+        <form id="createAccountForm">
+          
+          <div class="form-group">
+            <label for="firstName">FIRST NAME:</label>
+            <div class="input-container">
+              <input type="text" id="firstName" placeholder="First Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">LAST NAME:</label>
+            <div class="input-container">
+              <input type="text" id="lastName" placeholder="Last Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dob">DATE OF BIRTH:</label>
+            <div class="input-container">
+              <input type="date" id="dob" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="gender">GENDER:</label>
+            <div class="input-container">
+              <select id="gender">
+                <option value="" disabled selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact">EMAIL ID:</label>
+            <div class="input-container">
+              <input type="email" id="contact" placeholder="Email ID" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="education">EDUCATION:</label>
+            <div class="input-container">
+              <select id="education">
+                <option value="" disabled selected>Education</option>
+                <option value="10th">10th</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Graduation">Graduation</option>
+                <option value="Post Graduation">Post Graduation</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="maritalStatus">MARITAL STATUS:</label>
+            <div class="input-container">
+              <select id="maritalStatus">
+                <option value="" disabled selected>Status</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Unmarried">Unmarried</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">PASSWORD:</label>
+            <div class="input-container">
+              <input type="password" id="newPassword" placeholder="Password" />
+              <span class="eye-icon" onclick="togglePassword('newPassword')">👁️‍🗨️</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="access">ACCESS:</label>
+            <div class="input-container access-container">
+              <div class="checkbox-wrapper">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="enquiryAccess"> Enquiry Form <span class="checkmark">✔</span>
+                </label>
+              </div>
+              <div class="checkbox-wrapper">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="demoAccess"> Demo Form <span class="checkmark">✔</span>
+                </label>
+              </div>
+              <div class="checkbox-wrapper">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="studentAccess"> Student Information Form <span class="checkmark">✔</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" class="signup-btn">Sign Up</button>
+          </div>
+          <div class="create-account-link">
+            <a href="login.html">Already have an account?</a>
+          </div>
+        </form>
+      </div>
+      <div class="address-section">
+        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    window.togglePassword = function (id) {
+      const field = document.getElementById(id);
+      field.type = field.type === 'password' ? 'text' : 'password';
+    };
+  </script>
+</body>
+</html>

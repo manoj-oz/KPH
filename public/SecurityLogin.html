@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- ✅ Correctly load modular JS -->
+  <script type="module" src="js/main.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <section class="form-section">
+      <h2 class="page-heading">SECURITY LOGIN</h2>
+      <div class="logo-container">
+        <img src="KPH.jpg" alt="Logo" class="logo" />
+      </div>
+
+      <div class="login-box">
+        <!-- ✅ No inline JavaScript -->
+        <form id="defaultLoginForm">
+          <div class="form-group">
+            <label for="username">USERNAME:</label>
+            <div class="input-container">
+              <input type="text" id="username" placeholder="Username" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="defaultPassword">PASSWORD:</label>
+            <div class="input-container">
+              <input type="password" id="defaultPassword" placeholder="Password" required />
+              <span class="eye-icon" onclick="togglePassword('defaultPassword')">👁️‍🗨️</span>
+            </div>
+          </div>
+
+          <div class="forgot-password-container">
+            <a href="ForgetPassword.html" class="forgot-password">Forgot Password?</a>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" class="signup-btn">LOGIN</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="address-section">
+        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demo Form</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <section class="form-section">
+      <h2 class="page-heading">DEMO FORM</h2>
+      <div class="logo-container">
+        <img src="KPH.jpg" alt="Logo" class="logo" />
+      </div>
+      <div class="login-box">
+        <form id="demoFormElement" onsubmit="event.preventDefault(); submitForm('demoForm');">
+          <div class="form-group">
+            <label for="demoEnquiryId">ENQUIRY ID:</label>
+            <div class="input-container">
+              <select id="demoEnquiryId" onchange="autoFillDemoForm()">
+                <option value="" disabled selected>Enquiry ID</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demoFullName">FULL NAME:</label>
+            <div class="input-container">
+              <input type="text" id="demoFullName" placeholder="Full Name" />
+            </div>
+          </div>
+          <div class="form-group phone-group">
+            <label for="demoCountryCode">PHONE NUMBER:</label>
+            <div class="phone-input-container">
+              <select id="demoCountryCode">
+                <option value="+91">India (+91)</option>
+                <option value="+1">USA (+1)</option>
+                <option value="+44">UK (+44)</option>
+              </select>
+              <input type="text" id="demoPhone" placeholder="Phone Number" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demoEmail">EMAIL ID:</label>
+            <div class="input-container">
+              <input type="email" id="demoEmail" placeholder="Email ID" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">SUBJECT:</label>
+            <div class="input-container">
+              <input type="text" id="subject" placeholder="Subject" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demoDate">DEMO DATE:</label>
+            <div class="input-container">
+              <input type="date" id="demoDate" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tutorName">TUTOR NAME:</label>
+            <div class="input-container">
+              <input type="text" id="tutorName" placeholder="Tutor Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demoTime">DEMO TIME:</label>
+            <div class="input-container">
+              <input type="time" id="demoTime" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="demoFeedback">DEMO FEEDBACK:</label>
+            <div class="input-container">
+              <select id="demoFeedback">
+                <option value="" disabled selected>Select Feedback</option>
+                <option value="1 - Outstanding">1 - Outstanding</option>
+                <option value="2 - Excellent">2 - Excellent</option>
+                <option value="3 - Good">3 - Good</option>
+                <option value="4 - Average">4 - Average</option>
+                <option value="5 - Poor">5 - Poor</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="enrollStatus">ENROLL STATUS:</label>
+            <div class="input-container">
+              <select id="enrollStatus">
+                <option value="" disabled selected>Select Status</option>
+                <option value="Enrolled">Enrolled</option>
+                <option value="Not-Enrolled">Not-Enrolled</option>
+              </select>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" class="signup-btn">SUBMIT</button>
+            <a href="select-form.html" class="signup-btn">BACK</a>
+          </div>
+        </form>
+      </div>
+      <div class="address-section">
+        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
+      </div>
+    </section>
+  </div>
+</body>
+</html>

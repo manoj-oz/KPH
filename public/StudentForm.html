@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Information Form</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <section class="form-section">
+      <h2 class="page-heading">STUDENT INFORMATION FORM</h2>
+      <div class="logo-container">
+        <img src="KPH.jpg" alt="Logo" class="logo" />
+      </div>
+      <div class="login-box">
+        <form id="studentInfoFormElement" onsubmit="event.preventDefault(); submitForm('studentInfoForm');">
+          <div class="form-group">
+            <label for="studentEnquiryId">ENQUIRY ID:</label>
+            <div class="input-container">
+              <select id="studentEnquiryId" onchange="autoFillStudentForm()">
+                <option value="" disabled selected>Enquiry ID</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="studentFullName">FULL NAME:</label>
+            <div class="input-container">
+              <input type="text" id="studentFullName" placeholder="Full Name" />
+            </div>
+          </div>
+          <div class="form-group phone-group">
+            <label for="studentCountryCode">PHONE NUMBER:</label>
+            <div class="phone-input-container">
+              <select id="studentCountryCode">
+                <option value="+91">India (+91)</option>
+                <option value="+1">USA (+1)</option>
+                <option value="+44">UK (+44)</option>
+              </select>
+              <input type="text" id="studentPhone" placeholder="Phone Number" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="studentEmail">EMAIL ID:</label>
+            <div class="input-container">
+              <input type="email" id="studentEmail" placeholder="Email ID" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="studentSubject">SUBJECT:</label>
+            <div class="input-container">
+              <input type="text" id="studentSubject" placeholder="Subject" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="totalFee">TOTAL FEE:</label>
+            <div class="input-container">
+              <input type="text" id="totalFee" placeholder="Total Fee" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="paidAmount">PAID AMOUNT:</label>
+            <div class="input-container">
+              <input type="text" id="paidAmount" placeholder="Paid Amount" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pendingAmount">PENDING AMOUNT:</label>
+            <div class="input-container">
+              <input type="text" id="pendingAmount" placeholder="Pending Amount" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="paymentMode">MODE OF PAYMENT:</label>
+            <div class="input-container">
+              <select id="paymentMode">
+                <option value="" disabled selected>Select Payment Mode</option>
+                <option value="Single">Single</option>
+                <option value="Installment">Installment</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="trainerName">TRAINER NAME:</label>
+            <div class="input-container">
+              <input type="text" id="trainerName" placeholder="Trainer Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="studentComment">COMMENT:</label>
+            <div class="input-container">
+              <textarea id="studentComment" placeholder="Comment"></textarea>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" class="signup-btn">SUBMIT</button>
+            <a href="select-form.html" class="signup-btn">BACK</a>
+          </div>
+        </form>
+      </div>
+      <div class="address-section">
+        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
+      </div>
+    </section>
+  </div>
+</body>
+</html>
