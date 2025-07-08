@@ -3,6 +3,9 @@ import { firstLogin, changePassword } from './auth.js';
 import { createAccount, generateEmail } from './account.js';
 import { submitEnquiry } from './enquiry.js';
 
+// 🔁 Replace with your actual Render backend URL
+const API_BASE_URL = 'https://kph-f581.onrender.com'; // << ✅ update this
+
 // ✅ FIRST LOGIN FORM (FirstLogin.html)
 const firstLoginForm = document.getElementById('firstLoginForm');
 if (firstLoginForm) {
@@ -45,7 +48,7 @@ async function defaultLogin() {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/api/security-login', {
+    const response = await fetch(`${API_BASE_URL}/api/security-login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -54,13 +57,16 @@ async function defaultLogin() {
     const result = await response.json();
 
     if (response.ok) {
-      alert('Login successful!');
+      alert('✅ Login successful!');
+      // Save username or login info if needed
+      localStorage.setItem('securityUser', username);
       window.location.href = 'CreateNewAccount.html';
     } else {
-      alert(result.error || 'Login failed');
+      alert(`❌ ${result.error || 'Login failed'}`);
     }
   } catch (err) {
-    alert('Login error: ' + err.message);
+    console.error('Login error:', err);
+    alert('❌ Failed to connect to server. Please check your internet or backend.');
   }
 }
 
@@ -79,7 +85,7 @@ window.togglePassword = function (id) {
   field.type = field.type === 'password' ? 'text' : 'password';
 };
 
-// ✅ DOMContentLoaded: Bind form and generate email logic
+// ✅ DOMContentLoaded: Bind forms
 document.addEventListener('DOMContentLoaded', () => {
   // 🔐 Change Password form
   const changePasswordForm = document.getElementById('changePasswordForm');
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 📨 Auto-generate email when first or last name changes
+  // 📨 Auto-generate email when name fields change
   const firstNameInput = document.getElementById('firstName');
   const lastNameInput = document.getElementById('lastName');
 
