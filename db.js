@@ -1,11 +1,11 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 
+// Use DATABASE_URL if available (Render), else fallback to local .env values
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'IBM_ACE',
-  password: '12345',
-  port: 5432,
+  connectionString: process.env.DATABASE_URL || 
+    `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
 });
 
 module.exports = pool;
