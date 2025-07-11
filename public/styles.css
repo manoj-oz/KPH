@@ -417,7 +417,23 @@ body.enquiry-page .signup-btn:hover {
     background: #1e40af;
 }
 
+body.enquiry-page .btn-back {
+  width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
 
+body.enquiry-page .btn-back:hover {
+  background: #1e40af;
+}
 /* Responsive Tweaks */
 @media (max-width: 480px) {
     body.enquiry-page .form-section {
