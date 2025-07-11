@@ -7,11 +7,9 @@
   <title>Login - KPHT Portal</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
 </head>
 
-
- <body class="login-page">
+<body class="login-page">
   <div class="login-container">
     <!-- ✅ Login Section -->
     <section id="firstLoginSection" class="form-section">
@@ -86,7 +84,21 @@
       input.type = input.type === 'password' ? 'text' : 'password';
     }
   </script>
-</body>
 
+  <!-- ✅ Include your modules -->
+  <script type="module">
+    import { firstLogin } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('firstLoginForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          firstLogin(); // ✅ Call your login function
+        });
+      }
+    });
+  </script>
+</body>
 
 </html>
