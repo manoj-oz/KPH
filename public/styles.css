@@ -417,6 +417,7 @@ body.enquiry-page .signup-btn:hover {
     background: #1e40af;
 }
 
+
 /* Responsive Tweaks */
 @media (max-width: 480px) {
     body.enquiry-page .form-section {
