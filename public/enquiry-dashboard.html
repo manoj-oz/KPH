@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enquiry Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="form-section">
+      <h2 class="page-heading">Enquiry Dashboard</h2>
+
+      <div class="table-wrapper">
+        <table id="enquiryTable">
+          <thead>
+            <tr>
+              <th>Enquiry ID</th>
+              <th>Date</th>
+              <th>Full Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>DOB</th>
+              <th>Course</th>
+              <th>Status</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadEnquiries() {
+      try {
+        const response = await fetch('http://localhost:3000/api/enquiries');
+        const data = await response.json();
+
+        const tableBody = document.querySelector('#enquiryTable tbody');
+        tableBody.innerHTML = '';
+
+        data.forEach(enquiry => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${enquiry.enquiry_id}</td>
+            <td>${enquiry.date}</td>
+            <td>${enquiry.full_name}</td>
+            <td>${enquiry.phone}</td>
+            <td>${enquiry.email}</td>
+            <td>${enquiry.dob}</td>
+            <td>${enquiry.course}</td>
+            <td>${enquiry.status}</td>
+            <td>${enquiry.comment}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Failed to load enquiries:', error);
+      }
+    }
+
+    loadEnquiries();
+  </script>
+</body>
+</html>

@@ -1,288 +1,432 @@
-body {
+/* ==== Base Reset ==== */
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
+}
+
+
+body {
+    background: #f2f4f7;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f4;
 }
 
-.container {
+.login-container {
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+}
+
+
+/* ==== Header ==== */
+.login-header {
     text-align: center;
-    padding: 15px;
+    margin-bottom: 1.5rem;
 }
 
+.login-header img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+    border: 1px solid #cbd5e1;
+}
+
+.login-header h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* ==== Forms ==== */
 .form-section {
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+#firstLoginSection {
+    display: block;
+}
+
+
+/* Example: show forgot password form on forgot-password page */
+body.forgot-password-page .form-section {
+    display: block;
+}
+
+body.security-login .form-section {
+    display: block;
+}
+
+body.select-a-form .form-section {
+   display: block;
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    width: 150%;
+    max-width: 420px;
+}
+
+.signup-btn {
+    display: block;
     width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
+    padding: 0.6rem;
+    margin: 0.3rem 0;
+    background: #2563eb;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+    background: #1e40af;
+}
+
+/* ==== Change Password Page Specific ==== */
+body.change-password .form-section {
+    display: block;
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    width: 120%;
+    max-width: 420px;
 }
 
 .page-heading {
-    color: grey;
-    font-size: 24px;
-    margin-bottom: 15px;
     text-align: center;
+    font-size: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .logo-container {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
 
-.logo {
-    width: 120px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.login-box {
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    gap: 5px;
-    position: relative;
-}
-
-.form-group.centered {
-    align-items: center;
-}
-
-.form-group label {
-    font-weight: bold;
-    color: #333;
-    font-size: 14px;
-    text-align: left;
+.logo-container .logo {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #cbd5e1;
+    object-fit: cover;
 }
 
 .input-container {
     position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
 }
 
-.input-container input,
-.input-container select,
-.input-container textarea {
+.input-container input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
+    padding: 1rem 2.5rem 1rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-.input-container input::placeholder,
-.input-container select option[disabled][selected],
-.input-container textarea::placeholder {
-    font-weight: bold;
-    color: grey;
+.input-container label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 0.25rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
 }
 
-.input-container.access-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-    align-items: center;
-    min-height: 60px;
+.input-container input:focus {
+    outline: none;
+    border-color: #3b82f6;
 }
 
-.checkbox-wrapper {
-    margin-bottom: 8px;
-    width: 100%;
-    text-align: center;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-    user-select: none;
-    justify-content: center;
-}
-
-.checkbox-label input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.checkbox-label .checkmark {
-    display: none;
-    margin-left: 5px;
-    color: green;
-}
-
-.checkbox-label input:checked ~ .checkmark {
-    display: inline-block;
+.input-container input:focus+label,
+.input-container input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #2563eb;
 }
 
 .eye-icon {
     position: absolute;
-    right: 10px;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
     cursor: pointer;
-    font-size: 14px;
-}
-
-.forgot-password-container {
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.forgot-password {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-}
-
-.create-account-link {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.create-account-link a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.create-account-link a:hover {
-    text-decoration: underline;
-}
-
-.signup-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.3s;
-}
-
-.signup-btn:hover {
-    background-color: #0056b3;
-}
-
-.form-btn {
-    width: 100%;
-    max-width: 220px;
-}
-
-.address-section {
-    margin-top: 15px;
-    font-size: 12px;
-    color: #333;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ff6200;
-    text-align: center;
+    font-size: 1.1rem;
+    color: #64748b;
 }
 
 .button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-submit,
+.btn-cancel {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
     text-align: center;
-    margin-top: 15px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-submit {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-submit:hover {
+    background: #1e40af;
+}
+
+.btn-cancel {
+    background: #f3f4f6;
+    color: #1e293b;
+}
+
+.btn-cancel:hover {
+    background: #e2e8f0;
+}
+
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.6rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 0.75rem;
+    /* Space for eye icon */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 0.25rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #2563eb;
+}
+
+/* ==== Password Eye Icon ==== */
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    /* Adjust if needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+.action-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+.action-links a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.action-links a:hover {
+    text-decoration: underline;
+}
+
+/* ==== Buttons ==== */
+.button-container {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
 }
 
-.phone-group .phone-input-container {
-    display: flex;
-    gap: 10px;
+.btn-submit {
     width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.phone-group .phone-input-container select {
-    width: 120px;
-    padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    font-size: 14px;
+.btn-submit:hover {
+    background: #1e40af;
 }
 
-.phone-group .phone-input-container input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .form-section {
-        padding: 15px;
-    }
-    
-    .form-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .input-container {
-        width: 100%;
-    }
-    
-    .button-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .input-container.access-container {
-        width: 100%;
-    }
-    
-    .form-btn {
-        width: 100%;
-        max-width: 150px;
-    }
-
-    .phone-group .phone-input-container {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .phone-group .phone-input-container select,
-    .phone-group .phone-input-container input {
-        width: 100%;
+@media (max-width: 480px) {
+    .login-container {
+        margin: 1rem;
     }
 }
 
+/* ==== Enquiry Form Page Specific ==== */
+body.enquiry-page {
+  padding: 1rem 1rem 2rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
+/* Main Form Section */
+body.enquiry-page .form-section {
+  display: block;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  max-width: 720px;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
 
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+  body.enquiry-page {
+    padding: 1rem 0.5rem 2rem;
+  }
 
- 
+  body.enquiry-page .form-section {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+  body.enquiry-page .form-section {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+/* Form Group */
+body.enquiry-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Labels */
+body.enquiry-page .form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Inputs, Selects, Textareas */
+body.enquiry-page .input-container input,
+body.enquiry-page .input-container select,
+body.enquiry-page .input-container textarea,
+body.enquiry-page .phone-input-container input,
+body.enquiry-page .phone-input-container select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+/* Phone Number Field */
+body.enquiry-page .phone-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Button */
+body.enquiry-page .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+body.enquiry-page .signup-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+body.enquiry-page .signup-btn:hover {
+    background: #1e40af;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+    body.enquiry-page .form-section {
+        padding: 1rem;
+        margin: 1rem;
+    }
+}
+
+/* Textarea Styling */
+body.enquiry-page textarea {
+    resize: vertical;
+    min-height: 80px;
+}

@@ -6,51 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Security Login</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- ✅ Correctly load modular JS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script type="module" src="js/main.js" defer></script>
 </head>
 
-<body>
-  <div class="container">
+<body class="security-login">
+  <div class="login-container">
     <section class="form-section">
-      <h2 class="page-heading">SECURITY LOGIN</h2>
-      <div class="logo-container">
-        <img src="KPH.jpg" alt="Logo" class="logo" />
+      <div class="login-header">
+        <img src="KPH.jpg" alt="Logo" />
+        <h2>Security Login</h2>
       </div>
 
-      <div class="login-box">
-        <!-- ✅ No inline JavaScript -->
-        <form id="defaultLoginForm">
-          <div class="form-group">
-            <label for="username">USERNAME:</label>
-            <div class="input-container">
-              <input type="text" id="username" placeholder="Username" required />
-            </div>
-          </div>
+      <form id="defaultLoginForm">
+        <div class="form-group">
+          <input type="text" id="username" required placeholder=" " />
+          <label for="username">Username</label>
+        </div>
 
-          <div class="form-group">
-            <label for="defaultPassword">PASSWORD:</label>
-            <div class="input-container">
-              <input type="password" id="defaultPassword" placeholder="Password" required />
-              <span class="eye-icon" onclick="togglePassword('defaultPassword')">👁️‍🗨️</span>
-            </div>
-          </div>
+        <div class="form-group">
+          <input type="password" id="defaultPassword" required placeholder=" " />
+          <label for="defaultPassword">Password</label>
+          <span class="eye-icon" onclick="togglePassword('defaultPassword')">👁️</span>
+        </div>
 
-          <div class="forgot-password-container">
-            <a href="ForgetPassword.html" class="forgot-password">Forgot Password?</a>
-          </div>
+        <div class="action-links">
+          <a href="ForgetPassword.html" class="forgot-password">Forgot Password?</a>
+        </div>
 
-          <div class="button-container">
-            <button type="submit" class="signup-btn">LOGIN</button>
-          </div>
-        </form>
-      </div>
+        <div class="button-container">
+          <button type="submit" class="btn-submit">Login</button>
+        </div>
+      </form>
 
-      <div class="address-section">
-        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
-      </div>
     </section>
   </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const input = document.getElementById(fieldId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
 </body>
 
 </html>

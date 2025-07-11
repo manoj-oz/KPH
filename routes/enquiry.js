@@ -105,6 +105,26 @@ module.exports = (pool) => {
       res.status(500).json({ error: 'Failed to generate enquiry ID' });
     }
   });
+
+  // ✅ GET /api/enquiries - fetch all enquiry records
+router.get('/enquiries', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT 
+        enquiry_id, date, full_name, phone, email, dob,
+        course, source, education, passed_out_year, about,
+        mode, batch_timing, language, status, comment
+       FROM enquiries
+       ORDER BY date DESC, enquiry_id DESC`
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('❌ Error fetching enquiries:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
  
   return router;
 };

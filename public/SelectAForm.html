@@ -5,25 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Select a Form</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script type="module" src="js/main.js" defer></script>
 </head>
-<body>
+<body class="select-a-form">
   <div class="container">
     <section class="form-section">
+      
+      <!-- Page Heading -->
       <h2 class="page-heading">SELECT A FORM</h2>
-      <div class="logo-container">
-        <img src="KPH.jpg" alt="Logo" class="logo" />
+
+      <!-- Logo -->
+      <div class="logo-container" style="text-align: center; margin-bottom: 1.5rem;">
+  <img src="KPH.jpg" alt="Logo" class="logo"
+       style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ccc;" />
+</div>
+
+
+      <!-- Button Container -->
+      <div class="form-group" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+        <a href="EnquiryForm.html" class="signup-btn btn-submit" style="text-align: center;">Enquiry Form</a>
+        <a href="DemoForm.html" class="signup-btn btn-submit" style="text-align: center;">Demo Form</a>
+        <a href="StudentForm.html" class="signup-btn btn-submit" style="text-align: center;">Student Info Form</a>
       </div>
-      <div class="login-box">
-        <div class="button-container" id="formButtons">
-          <a href="EnquiryForm.html" class="signup-btn">Enquiry Form</a>
-          <a href="DemoForm.html" class="signup-btn">Demo Form</a>
-          <a href="StudentForm.html" class="signup-btn">Student Information Form</a>
-        </div>
-      </div>
-      <div class="address-section">
-        Address: Flat No. 315, 3rd Floor, Annapurna Block, Aditya Enclave, Ameerpet, Hyderabad - 500038.
-      </div>
+
     </section>
   </div>
 </body>
