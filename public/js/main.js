@@ -58,8 +58,18 @@ async function defaultLogin() {
 
     if (response.ok) {
       alert('✅ Login successful!');
-      // Save username or login info if needed
+
+      // ✅ Store user access permissions from backend response
+      localStorage.setItem('userAccess', JSON.stringify({
+        enquiry: result.accessEnquiry,
+        demo: result.accessDemo,
+        student: result.accessStudent
+      }));
+
+      // ✅ Store username (optional)
       localStorage.setItem('securityUser', username);
+
+      // ✅ Redirect to new account creation page or dashboard
       window.location.href = 'CreateNewAccount.html';
     } else {
       alert(`❌ ${result.error || 'Login failed'}`);
