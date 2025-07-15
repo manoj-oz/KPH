@@ -626,7 +626,7 @@ body.create-newaccount {
 }
 
 .access-group {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.61rem;
 }
 
 .access-label {
@@ -637,7 +637,8 @@ body.create-newaccount {
   margin-bottom: 0.5rem;
 }
 
-.access-options {
+.access-options {git push origin fix-old-commit1 --force
+
   padding: 0.75rem 1rem;
   background-color: #f8fafc;
   border: 1px solid #cbd5e1;
