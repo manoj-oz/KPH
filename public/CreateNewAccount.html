@@ -10,7 +10,7 @@
   <script type="module" src="js/main.js" defer></script>
 </head>
 
-<body>
+<body class="create-newaccount">
   <div class="login-container">
     <section class="form-section">
       <div class="login-header">
@@ -33,7 +33,7 @@
 
         <!-- Date of Birth -->
         <div class="form-group">
-          <input type="date" id="dob" required placeholder=" " />
+          <input type="date" id="dob" required placeholder=" " max="" />
           <label for="dob">Date of Birth</label>
         </div>
 
@@ -84,7 +84,24 @@
           <span class="eye-icon" onclick="togglePassword('newPassword')">👁️</span>
         </div>
 
-        
+        <!-- Form Access Permissions -->
+        <div class="form-group access-group">
+          <label class="access-label">Give Access To:</label>
+          <div class="access-options">
+            <div class="checkbox-line">
+              <input type="checkbox" name="formAccess" value="enquiry" id="access-enquiry" />
+              <label for="access-enquiry">Enquiry Form</label>
+            </div>
+            <div class="checkbox-line">
+              <input type="checkbox" name="formAccess" value="demo" id="access-demo" />
+              <label for="access-demo">Demo Form</label>
+            </div>
+            <div class="checkbox-line">
+              <input type="checkbox" name="formAccess" value="student" id="access-student" />
+              <label for="access-student">Student Info Form</label>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Submit Button -->
@@ -96,16 +113,34 @@
         <div class="action-links">
           <a href="login.html">Already have an account?</a>
         </div>
+
       </form>
+
     </section>
   </div>
 
-  <!-- Toggle Password JS -->
+  <!-- Custom JS -->
   <script>
+    // Show/hide password
     window.togglePassword = function (id) {
       const field = document.getElementById(id);
       field.type = field.type === 'password' ? 'text' : 'password';
     };
+
+    // Limit DOB to today and ensure 4-digit year
+    document.addEventListener('DOMContentLoaded', () => {
+      const dobInput = document.getElementById('dob');
+      const today = new Date().toISOString().split('T')[0];
+      dobInput.max = today;
+
+      dobInput.addEventListener('input', () => {
+        const year = dobInput.value.split('-')[0];
+        if (year && year.length > 4) {
+          alert("Please enter a valid 4-digit year.");
+          dobInput.value = '';
+        }
+      });
+    });
   </script>
 </body>
 

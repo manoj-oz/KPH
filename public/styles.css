@@ -447,3 +447,232 @@ body.enquiry-page textarea {
     resize: vertical;
     min-height: 80px;
 }
+
+body.create-newaccount {
+  background: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed from center */
+  padding: 2rem 1rem;       /* Increased top padding */
+  overflow-y: auto;         /* Allows scrolling on small screens */
+}
+
+/* ==== Header ==== */
+.login-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-header img {
+  width: 70px; /* Slightly larger for better visibility */
+  height: 70px;
+  object-fit: contain; /* Ensure full image shows */
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem; /* Optional: Space from top */
+}
+
+
+/* ==== Container ==== */
+.login-container {
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 460px;
+}
+
+
+.login-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ==== Form Section ==== */
+.form-section {
+  display: block;
+}
+
+/* ==== Form Group ==== */
+.form-group {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 1rem 2.5rem 1rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0 0.25rem;
+  font-size: 0.95rem;
+  color: #64748b;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:valid + label {
+  top: -8px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: #2563eb;
+}
+
+/* ==== Eye Icon for Password ==== */
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+/* ==== Button ==== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #1e40af;
+}
+
+/* ==== Link to Login ==== */
+.action-links {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.action-links a {
+  font-size: 0.9rem;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.action-links a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.9rem 2.5rem 0.9rem 0.75rem;
+  }
+}
+
+/* ==== Form Access Permissions ==== */
+.checkbox-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-wrapper label {
+  font-size: 0.95rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  transform: scale(1.1);
+  accent-color: #2563eb;
+}
+
+.access-group {
+  margin-bottom: 1.6rem;
+}
+
+.access-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.access-options {
+  padding: 0.75rem 1rem;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ==== Fixed Checkbox Styling ==== */
+
+.checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.checkbox-line input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #2563eb;
+}
+
+.checkbox-line label {
+  position: static;       /* Remove floating label behavior */
+  top: auto;
+  left: auto;
+  transform: none;
+  background: none;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #334155;
+  font-weight: 500;
+  display: inline;        /* Inline so it appears next to checkbox */
+}
+
+
