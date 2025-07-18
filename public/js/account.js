@@ -12,15 +12,20 @@ export async function createAccount() {
         education: document.getElementById('education').value,
         maritalStatus: document.getElementById('maritalStatus').value,
         password: document.getElementById('newPassword').value,
+        accessEnquiry: document.getElementById('enquiryAccess').checked,
+        accessDemo: document.getElementById('demoAccess').checked,
+        accessStudent: document.getElementById('studentAccess').checked
         accessEnquiry: document.getElementById('access-enquiry').checked,
         accessDemo: document.getElementById('access-demo').checked,
         accessStudent: document.getElementById('access-student').checked
     };
 
+    // ✅ Use relative path only (no hardcoded /api/)
     const result = await apiPost('/create-account', body);
 
     if (result.message) {
         alert('Account created!');
+        showFirstLogin(); // Redirect or show login page
         showFirstLogin(); // Or redirect to login.html
     } else {
         alert('Failed: ' + (result.error || 'Unknown'));

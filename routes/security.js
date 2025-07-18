@@ -14,6 +14,7 @@ module.exports = (pool) => {
 
       // If user not found
       if (result.rows.length === 0) {
+        return res.status(400).json({ error: 'User not found' });
         return res.status(400).json({ error: '❌ User not found' });
       }
 
@@ -21,9 +22,11 @@ module.exports = (pool) => {
 
       // Check password match
       if (user.password !== password) {
+        return res.status(401).json({ error: 'Invalid credentials' });
         return res.status(401).json({ error: '❌ Invalid credentials' });
       }
 
+      res.json({ message: 'Login successful' });
       // ✅ Return access permissions along with success message
       return res.json({
         message: '✅ Login successful',
@@ -33,6 +36,8 @@ module.exports = (pool) => {
       });
 
     } catch (err) {
+      console.error('Security login error:', err);
+      res.status(500).json({ error: 'Server error' });
       console.error('❌ Security login error:', err);
       return res.status(500).json({ error: 'Internal server error' });
     }
