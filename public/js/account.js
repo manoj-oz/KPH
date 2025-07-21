@@ -12,6 +12,7 @@ export async function createAccount() {
         education: document.getElementById('education').value,
         maritalStatus: document.getElementById('maritalStatus').value,
         password: document.getElementById('newPassword').value,
+
         accessEnquiry: document.getElementById('access-enquiry').checked,
         accessDemo: document.getElementById('access-demo').checked,
         accessStudent: document.getElementById('access-student').checked
@@ -21,6 +22,7 @@ export async function createAccount() {
 
     if (result.message) {
         alert('Account created!');
+
         showFirstLogin(); // Or redirect to login.html
     } else {
         alert('Failed: ' + (result.error || 'Unknown'));

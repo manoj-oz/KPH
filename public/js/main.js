@@ -59,6 +59,7 @@ async function defaultLogin() {
     if (response.ok) {
       alert('✅ Login successful!');
 
+
       // ✅ Store user access permissions from backend response
       localStorage.setItem('userAccess', JSON.stringify({
         enquiry: result.accessEnquiry,
