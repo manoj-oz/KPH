@@ -58,7 +58,6 @@ async function defaultLogin() {
 
     if (response.ok) {
       alert('✅ Login successful!');
-      // Save username or login info if needed
 
       // ✅ Store user access permissions from backend response
       localStorage.setItem('userAccess', JSON.stringify({
