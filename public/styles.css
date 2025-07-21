@@ -663,7 +663,7 @@ body.create-newaccount {
 }
 
 .checkbox-line label {
-  position: static;       /* Remove floating label behavior */
+  position: static;       /* Remove floating label behavior and Dummy Change */
   top: auto;
   left: auto;
   transform: none;
