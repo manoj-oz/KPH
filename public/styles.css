@@ -649,8 +649,7 @@ body.create-newaccount {
   margin: 0;
 }
 
-.access-option label {
-  position: static;
+
   transform: none;
   padding: 0;
   color: #334155;
