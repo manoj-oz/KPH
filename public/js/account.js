@@ -17,6 +17,7 @@ export async function createAccount() {
         accessStudent: document.getElementById('access-student').checked
     };
 
+
     const result = await apiPost('/create-account', body);
 
     if (result.message) {
