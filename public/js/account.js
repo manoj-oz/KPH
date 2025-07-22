@@ -17,7 +17,6 @@ export async function createAccount() {
         accessStudent: document.getElementById('access-student').checked
     };
 
-
     const result = await apiPost('/create-account', body);
 
     if (result.message) {
@@ -29,7 +28,7 @@ export async function createAccount() {
 }
 
 
-// ✅ Auto-generate email from first & last names
+// ✅ Auto-generate email from first & last name
 export function generateEmail() {
     const firstName = document.getElementById('firstName')?.value.trim().toLowerCase();
     const lastName = document.getElementById('lastName')?.value.trim().toLowerCase();
