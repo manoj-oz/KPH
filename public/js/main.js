@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 👤 Create Account forms
+  // 👤 Create Account form
   const createAccountForm = document.getElementById('createAccountForm');
   if (createAccountForm) {
     createAccountForm.addEventListener('submit', (e) => {
