@@ -29,7 +29,7 @@ export async function createAccount() {
 }
 
 
-// ✅ Auto-generate email from first & last name
+// ✅ Auto-generate email from first & last names
 export function generateEmail() {
     const firstName = document.getElementById('firstName')?.value.trim().toLowerCase();
     const lastName = document.getElementById('lastName')?.value.trim().toLowerCase();
