@@ -24,7 +24,7 @@ module.exports = (pool) => {
         return res.status(401).json({ error: '❌ Invalid credentials' });
       }
 
-      // ✅ Return access permissions along with successfull message
+      // ✅ Return access permissions along with success message
       return res.json({
         message: '✅ Login successful',
         accessEnquiry: user.access_enquiry || false,
