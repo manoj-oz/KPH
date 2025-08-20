@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENQUIRY FORM DASHBOARD</title>
+
+  <style>
+    body.enquiry-dashboard {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e6f0fa, #d9e2f3);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .dashboard-section {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e0e0e0;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      height: 90px;
+      object-fit: contain;
+    }
+
+    .dashboard-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #003366;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .filter-bar input[type="text"],
+    .filter-bar select,
+    input[type="date"] {
+      padding: 10px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #fff;
+      min-width: 180px;
+    }
+
+    .date-right {
+      margin-left: auto;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      max-height: 600px;
+    }
+
+    .table-custom {
+      width: 100%;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .heading-row {
+      background: #eaf1fb;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .heading-row .cell {
+      background: #eaf1fb;
+      color: #1163b0;
+      font-weight: bold;
+      border-top: 2px solid #007bff;
+      border-bottom: 2px solid #007bff;
+    }
+
+    .heading-cell {
+      white-space: nowrap;
+      background: #eaf1fb !important;
+      color: #0481e9 !important;
+      font-size: 16px;
+      border-right: 1px solid #e0e0e0;
+      text-align: center;
+    }
+
+    .cell {
+      flex: 1 1 210px;
+      min-width: 210px;
+      max-width: 400px;
+      padding: 13px 8px;
+      text-align: center;
+      border-right: 1px solid #f1f1f1;
+      border-bottom: 1px solid #e0e0e0;
+      background: #fff;
+      font-size: 15px;
+      overflow-wrap: break-word;
+      white-space: pre-line;
+      text-overflow: unset;
+      word-break: break-word;
+    }
+
+    .row .cell:nth-child(8),
+    .row .cell:nth-child(15) {
+      min-width: 260px;
+      max-width: 600px;
+      font-size: 15px;
+      text-align: center;
+      background: #fff;
+    }
+
+    @media (max-width: 1000px) {
+      .cell {
+        min-width: 160px;
+        font-size: 13px;
+      }
+
+      .row .cell:nth-child(8),
+      .row .cell:nth-child(15) {
+        min-width: 225px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cell {
+        min-width: 115px;
+        font-size: 11px;
+      }
+
+      .row .cell:nth-child(8),
+      .row .cell:nth-child(15) {
+        min-width: 180px;
+        font-size: 11px;
+      }
+
+      .filter-bar input,
+      .filter-bar select,
+      .filter-bar .date-right {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .row .cell:last-child {
+      border-right: none;
+    }
+
+    .download-btn-center {
+      margin: 30px 0 10px 0;
+      text-align: center;
+    }
+
+    .download-btn-center button {
+      background: linear-gradient(90deg, #007bff, #0481e9);
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 13px 34px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .download-btn-center button:hover {
+      background: linear-gradient(90deg, #1163b0, #007bff);
+    }
+  </style>
+</head>
+
+<body class="enquiry-dashboard">
+  <div class="container">
+    <div class="dashboard-section">
+      <div class="logo-container">
+        <img src="KPH.jpg" alt="Company Logo" class="logo">
+      </div>
+      <h1 class="dashboard-title">ENQUIRY FORM DASHBOARD</h1>
+
+      <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search by Name" />
+        <select id="filterStatus">
+          <option value="">All Statuses</option>
+          <option value="Attended">Attended</option>
+          <option value="Un-attended">Un-attended</option>
+        </select>
+        <div class="date-right">
+          <input type="date" id="dateFilter" />
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-custom">
+          <div class="row heading-row">
+            <div class="cell heading-cell">S.NO</div>
+            <div class="cell heading-cell">Enquiry ID</div>
+            <div class="cell heading-cell">Full Name</div>
+            <div class="cell heading-cell">Phone Number</div>
+            <div class="cell heading-cell">Email ID</div>
+            <div class="cell heading-cell">Date of Birth</div>
+            <div class="cell heading-cell">Course of Enquiry</div>
+            <div class="cell heading-cell">Source of Enquiry</div>
+            <div class="cell heading-cell">Education Qualification</div>
+            <div class="cell heading-cell">Passed Out Year</div>
+            <div class="cell heading-cell">About</div>
+            <div class="cell heading-cell">Mode of Classes</div>
+            <div class="cell heading-cell">Batch Timings</div>
+            <div class="cell heading-cell">Language</div>
+            <div class="cell heading-cell">Demo Status</div>
+            <div class="cell heading-cell">Comment</div>
+
+          </div>
+          <div id="enquiryTableBody">
+            <!-- Dynamic rows will be populated here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="download-btn-center">
+        <button id="downloadPdfBtn">Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="/js/enquiry-dashboard.js"></script>
+
+</body>
+
+</html>

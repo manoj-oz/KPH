@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script type="module" src="js/main.js" defer></script>
+</head>
+
+<body class="create-newaccount">
+  <div class="login-container">
+    <section class="form-section">
+      <div class="login-header">
+        <img src="KPH.jpg" alt="Logo" />
+        <h2>Sign Up</h2>
+      </div>
+
+      <form id="createAccountForm">
+        <!-- First Name -->
+        <div class="form-group">
+          <input type="text" id="firstName" required placeholder=" " />
+          <label for="firstName">First Name</label>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+          <input type="text" id="lastName" required placeholder=" " />
+          <label for="lastName">Last Name</label>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-group">
+          <input type="date" id="dob" required placeholder=" " max="" />
+          <label for="dob">Date of Birth</label>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-group">
+          <select id="gender" required>
+            <option value="" disabled selected hidden></option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <label for="gender">Gender</label>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <input type="email" id="contact" required placeholder=" " />
+          <label for="contact">Email ID</label>
+        </div>
+
+        <!-- Education -->
+        <div class="form-group">
+          <select id="education" required>
+            <option value="" disabled selected hidden></option>
+            <option value="10th">10th</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Post Graduation">Post Graduation</option>
+          </select>
+          <label for="education">Education</label>
+        </div>
+
+        <!-- Marital Status -->
+        <div class="form-group">
+          <select id="maritalStatus" required>
+            <option value="" disabled selected hidden></option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Unmarried">Unmarried</option>
+          </select>
+          <label for="maritalStatus">Marital Status</label>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <input type="password" id="newPassword" required placeholder=" " />
+          <label for="newPassword">Password</label>
+          <span class="eye-icon" onclick="togglePassword('newPassword')">👁️</span>
+        </div>
+
+        <!-- Form Access Permissions  full-->
+        <div class="form-group access-group">
+          <div class="access-box">
+            <h3 class="access-title">Give Access To</h3>
+            <div class="access-options">
+              <div class="access-option">
+                <input type="checkbox" id="access-enquiry" name="formAccess" value="enquiry" />
+                <label for="access-enquiry">Enquiry Form</label>
+              </div>
+              <div class="access-option">
+                <input type="checkbox" id="access-demo" name="formAccess" value="demo" />
+                <label for="access-demo">Demo Form</label>
+              </div>
+              <div class="access-option">
+                <input type="checkbox" id="access-student" name="formAccess" value="student" />
+                <label for="access-student">Student Info Form</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="button-container">
+          <button type="submit" class="btn-submit">Sign Up</button>
+        </div>
+
+        <!-- Redirect to Login -->
+        <div class="action-links">
+          <a href="login.html">Already have an account?</a>
+        </div>
+
+      </form>
+
+    </section>
+  </div>
+
+  <!-- Custom JS -->
+  <script>
+    // Show/hide password
+    window.togglePassword = function (id) {
+      const field = document.getElementById(id);
+      field.type = field.type === 'password' ? 'text' : 'password';
+    };
+
+    // Limit DOB to today and ensure 4-digit year
+    document.addEventListener('DOMContentLoaded', () => {
+      const dobInput = document.getElementById('dob');
+      const today = new Date().toISOString().split('T')[0];
+      dobInput.max = today;
+
+      dobInput.addEventListener('input', () => {
+        const year = dobInput.value.split('-')[0];
+        if (year && year.length > 4) {
+          alert("Please enter a valid 4-digit year.");
+          dobInput.value = '';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

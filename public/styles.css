@@ -1,0 +1,714 @@
+/* ==== Base Reset ==== */
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background: #f2f4f7;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+}
+
+
+/* ==== Header ==== */
+.login-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-header img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+    border: 1px solid #cbd5e1;
+}
+
+.login-header h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* ==== Forms ==== */
+.form-section {
+    display: none;
+}
+
+#firstLoginSection {
+    display: block;
+}
+
+
+/* Example: show forgot password form on forgot-password page */
+body.forgot-password-page .form-section {
+    display: block;
+}
+
+body.security-login .form-section {
+    display: block;
+}
+
+body.select-a-form .form-section {
+   display: block;
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    width: 150%;
+    max-width: 420px;
+}
+
+.signup-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.3rem 0;
+    background: #2563eb;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+    background: #1e40af;
+}
+
+/* ==== Change Password Page Specific ==== */
+body.change-password .form-section {
+    display: block;
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem 2rem;
+    width: 120%;
+    max-width: 420px;
+}
+
+.page-heading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logo-container .logo {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #cbd5e1;
+    object-fit: cover;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-container label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 0.25rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.input-container input:focus+label,
+.input-container input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #2563eb;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-submit,
+.btn-cancel {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-submit {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-submit:hover {
+    background: #1e40af;
+}
+
+.btn-cancel {
+    background: #f3f4f6;
+    color: #1e293b;
+}
+
+.btn-cancel:hover {
+    background: #e2e8f0;
+}
+
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.6rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 0.75rem;
+    /* Space for eye icon */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 0.25rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #2563eb;
+}
+
+/* ==== Password Eye Icon ==== */
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    /* Adjust if needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+.action-links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+.action-links a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.action-links a:hover {
+    text-decoration: underline;
+}
+
+/* ==== Buttons ==== */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #1e40af;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin: 1rem;
+    }
+}
+
+/* ==== Enquiry Form Page Specific ==== */
+body.enquiry-page {
+  padding: 1rem 1rem 2rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Main Form Section */
+body.enquiry-page .form-section {
+  display: block;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  max-width: 720px;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+  body.enquiry-page {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  body.enquiry-page .form-section {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+  body.enquiry-page .form-section {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+/* Form Group */
+body.enquiry-page .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Labels */
+body.enquiry-page .form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Inputs, Selects, Textareas */
+body.enquiry-page .input-container input,
+body.enquiry-page .input-container select,
+body.enquiry-page .input-container textarea,
+body.enquiry-page .phone-input-container input,
+body.enquiry-page .phone-input-container select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+
+}
+
+/* Phone Number Field */
+body.enquiry-page .phone-input-container {
+    display: flex;
+    gap: 0.25rem;
+}
+
+/* Button */
+body.enquiry-page .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+body.enquiry-page .signup-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+body.enquiry-page .signup-btn:hover {
+    background: #1e40af;
+}
+
+body.enquiry-page .btn-back {
+  width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+body.enquiry-page .btn-back:hover {
+  background: #1e40af;
+}
+/* Responsive Tweaks */
+@media (max-width: 480px) {
+    body.enquiry-page .form-section {
+        padding: 1rem;
+        margin: 1rem;
+    }
+}
+
+/* Textarea Styling */
+body.enquiry-page textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+body.create-newaccount {
+  background: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Changed from center */
+  padding: 2rem 1rem;       /* Increased top padding */
+  overflow-y: auto;         /* Allows scrolling on small screens */
+}
+
+/* ==== Header ==== */
+.login-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-header img {
+  width: 70px; /* Slightly larger for better visibility */
+  height: 70px;
+  object-fit: contain; /* Ensure full image shows */
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem; /* Optional: Space from top */
+}
+
+
+/* ==== Container ==== */
+.login-container {
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 460px;
+}
+
+.login-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ==== Form Section ==== */
+.form-section {
+  display: block;
+}
+
+/* ==== Form Group ==== */
+.form-group {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 1rem 2.5rem 1rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0 0.25rem;
+  font-size: 0.95rem;
+  color: #64748b;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:valid + label {
+  top: -8px;
+  left: 10px;
+  font-size: 0.75rem;
+  color: #2563eb;
+}
+
+/* ==== Eye Icon for Password ==== */
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+/* ==== Button ==== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #1e40af;
+}
+
+/* ==== Link to Login ==== */
+.action-links {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.action-links a {
+  font-size: 0.9rem;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.action-links a:hover {
+  text-decoration: underline;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.9rem 2.5rem 0.9rem 0.75rem;
+  }
+}
+
+/* ==== Form Access Permissions ==== */
+/* ==== Form Access Styling ==== */
+.access-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.access-title {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.access-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.access-option {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #334155;
+  gap: 0.8rem;
+}
+
+.access-option input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  margin: 0;
+}
+
+.access-option label {
+  position: static;
+  transform: none;
+  padding: 0;
+  color: #334155;
+  font-size: 0.95rem;
+  pointer-events: auto;
+  flex-grow: 1;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.9rem 2.5rem 0.9rem 0.76rem;
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box h2 {
+  margin-bottom: 10px;
+  color: #28a745;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+}
+
+.popup-box button {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

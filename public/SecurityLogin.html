@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script type="module" src="js/main.js" defer></script>
+</head>
+
+<body class="security-login">
+  <div class="login-container">
+    <section class="form-section">
+      <div class="login-header">
+        <img src="KPH.jpg" alt="Logo" />
+        <h2>Security Login</h2>
+      </div>
+
+      <form id="defaultLoginForm">
+        <div class="form-group">
+          <input type="text" id="username" required placeholder=" " />
+          <label for="username">Username</label>
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="defaultPassword" required placeholder=" " />
+          <label for="defaultPassword">Password</label>
+          <span class="eye-icon" onclick="togglePassword('defaultPassword')">👁️</span>
+        </div>
+
+        <div class="action-links">
+          <a href="ForgetPassword.html" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" class="btn-submit">Login</button>
+        </div>
+      </form>
+
+    </section>
+  </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const input = document.getElementById(fieldId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+
+</html>

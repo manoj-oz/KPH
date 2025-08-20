@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select a Form</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="select-a-form">
+  <div class="container">
+    <section class="form-section">
+      <h2 class="page-heading">SELECT A FORM</h2>
+
+      <div class="logo-container" style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="KPH.jpg" alt="Logo" class="logo"
+          style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ccc;" />
+      </div>
+
+      <div class="form-group" id="formButtons"
+        style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+        <!-- Form buttons injected dynamically -->
+      </div>
+
+      <div style="text-align: center;">
+        <button onclick="logout()" class="signup-btn btn-submit">Logout</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+
+    window.history.forward();
+    window.onunload = function () { };
+
+    window.onload = function () {
+      const buttonContainer = document.getElementById("formButtons");
+
+      try {
+        const firstLogin = localStorage.getItem("first_login");
+        if (firstLogin === "true") {
+          window.location.href = "changepassword.html";
+          return;
+        }
+
+        const rawAccess = localStorage.getItem("accessControls");
+
+        if (!rawAccess) {
+          alert("No access permissions found. Please login again.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        let access;
+        try {
+          access = JSON.parse(rawAccess);
+        } catch (err) {
+          console.error("❌ Failed to parse userAccess:", err);
+          alert("Invalid access data. Please login again.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        const addFormButton = (label, href) => {
+          const btn = document.createElement("a");
+          btn.href = href;
+          btn.className = "signup-btn btn-submit";
+          btn.innerText = label;
+          btn.style.textAlign = "center";
+          buttonContainer.appendChild(btn);
+        };
+
+        let added = false;
+        if (access.enquiry) {
+          addFormButton("Enquiry Form", "EnquiryForm.html");
+          added = true;
+        }
+        if (access.demo) {
+          addFormButton("Demo Form", "DemoForm.html");
+          added = true;
+        }
+        if (access.student) {
+          addFormButton("Student Info Form", "StudentForm.html");
+          added = true;
+        }
+
+        if (!added) {
+          const msg = document.createElement("p");
+          msg.innerText = "You do not have access to any forms.";
+          msg.style.color = "red";
+          msg.style.textAlign = "center";
+          buttonContainer.appendChild(msg);
+        }
+      } catch (err) {
+        console.error("💥 Unexpected error in SelectAForm:", err);
+        alert("Something went wrong. Please login again.");
+        window.location.href = "login.html";
+      }
+    };
+  </script>
+</body>
+
+</html>

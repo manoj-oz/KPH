@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - KPHT Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+  <div class="login-container">
+    <!-- ✅ Login Section -->
+    <section id="firstLoginSection" class="form-section">
+      <div class="login-header">
+        <img src="KPH.jpg" alt="Logo" />
+        <h2>KPHT Portal Login</h2>
+      </div>
+
+      <form id="firstLoginForm">
+        <div class="form-group">
+          <input type="email" id="email" required placeholder=" " />
+          <label for="email">Email ID</label>
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="password" required placeholder=" " />
+          <label for="password">Password</label>
+          <span class="eye-icon" onclick="togglePassword('password')">👁️</span>
+        </div>
+
+        <div class="action-links">
+          <a href="ForgetPassword.html">Forgot Password?</a>
+          <a href="SecurityLogin.html">Create Account</a>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" class="btn-submit">Login</button>
+        </div>
+      </form>
+    </section>
+    
+  </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const input = document.getElementById(fieldId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+
+  <!-- ✅ Include your modules -->
+  <script type="module">
+    import { firstLogin } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('firstLoginForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          firstLogin(); // ✅ Call your login function
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
