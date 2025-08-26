@@ -1,4 +1,3 @@
-// 📁 studentRoutes.js
 const express = require("express");
 const router = express.Router();
 
@@ -91,6 +90,25 @@ module.exports = (pool) => {
       return res
         .status(500)
         .json({ error: "Database error while inserting student" });
+    }
+  });
+
+  // ✅ GET /api/dashboard/students → fetch all students for dashboard
+  router.get("/dashboard/students", async (req, res) => {
+    try {
+      const result = await pool.query(
+        `SELECT 
+          student_id, full_name, phone, email, course, 
+          total_fee, paid_amount, pending_amount, 
+          payment_type, tutor_name, created_at
+        FROM students
+        ORDER BY created_at DESC`
+      );
+
+      return res.json(result.rows);
+    } catch (err) {
+      console.error("❌ Error fetching students:", err);
+      return res.status(500).json({ error: "Database error fetching students" });
     }
   });
 

@@ -49,7 +49,7 @@ async function fetchDataFromDatabase() {
 }
 
 function displayStudents() {
-    const tableBody = document.getElementById('studentTableBody');
+    const tableBody = document.getElementById('StudentTableBody');
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const filterStatus = document.getElementById('filterStatus').value;
     const filterDate = document.getElementById('dateFilter').value;
