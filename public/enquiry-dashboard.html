@@ -242,10 +242,20 @@
 
       <div class="download-btn-center">
         <button id="downloadPdfBtn">Download PDF</button>
+            <div class="download-btn-center">
+      <button id="downloadPdfBtn" onclick="goBack()">← Back</button>
+    </div>
       </div>
     </div>
-  </div>
 
+
+  </div>
+  </div>
+  <script>
+    function goBack() {
+      window.location.href = 'EnquiryForm.html';
+    }
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="/js/enquiry-dashboard.js"></script>
 

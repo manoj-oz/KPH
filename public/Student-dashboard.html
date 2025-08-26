@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DEMO DASHBOARD</title>
+  <title>STUDENT DASHBOARD</title>
 
   <style>
     body.enquiry-dashboard {
@@ -193,13 +193,13 @@
   </style>
 </head>
 
-<body class="Demo-dashboard">
+<body class="Student-dashboard">
   <div class="container">
     <div class="dashboard-section">
       <div class="logo-container">
         <img src="KPH.jpg" alt="Company Logo" class="logo">
       </div>
-      <h1 class="dashboard-title">DEMO DASHBOARD</h1>
+      <h1 class="dashboard-title">STUDENT DASHBOARD</h1>
 
       <div class="filter-bar">
         <input type="text" id="searchInput" placeholder="Search by Name" />
@@ -217,18 +217,18 @@
         <div class="table-custom">
           <div class="row heading-row">
             <div class="cell heading-cell">S.NO</div>
-            <div class="cell heading-cell">DEMO ID</div>
-            <div class="cell heading-cell">Enquiry ID</div>
+            <div class="cell heading-cell">STUDENT ID</div>
             <div class="cell heading-cell">Full Name</div>
             <div class="cell heading-cell">Phone Number</div>
             <div class="cell heading-cell">Email ID</div>
             <div class="cell heading-cell">Course</div>
-            <div class="cell heading-cell">Demo Date</div>
-            <div class="cell heading-cell">Tutor Name</div>
-            <div class="cell heading-cell">DEMO Time</div>
-            <div class="cell heading-cell">TIME STAMP</div>
+            <div class="cell heading-cell">TOTAL FEE</div>
+            <div class="cell heading-cell">PAID AMOUNT</div>
+            <div class="cell heading-cell">PENDING AMOUNT</div>
+            <div class="cell heading-cell">PAYMENT TYPE</div>
+            <div class="cell heading-cell">TUTOR NAME</div>
           </div>
-          <div id="DemoTableBody">
+          <div id="StudentTableBody">
             <!-- Dynamic rows will be populated here -->
           </div>
         </div>
@@ -237,20 +237,19 @@
       <div class="download-btn-center">
         <button id="downloadPdfBtn">Download PDF</button>
       </div>
-        <div class="download-btn-center">
-        <button id="downloadPdfBtn" onclick="goBack()">← Back</button>
-      </div>
 
+      <div class="download-btn-center">
+        <button id="downloadPdfBtn"onclick="goBack()">← Back</button>
+      </div>
     </div>
   </div>
-
   <script>
     function goBack() {
-      window.location.href = 'DemoForm.html';
+      window.location.href = 'StudentForm.html';
     }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="/js/Demo-dashboard.js"></script>
+  <script src="/js/Student-dashboard.js"></script>
 
 </body>
 

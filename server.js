@@ -1,16 +1,25 @@
-const express = require('express');
+const express = require('express'); 
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const pool = require('./db'); // PostgreSQL pool
+const pool = require('./db');
+
+// ✅ Route imports (functions that accept pool)
+const authRoutes = require('./routes/auth');
+const accountRoutes = require('./routes/account');
+const enquiryRoutes = require('./routes/enquiry');
+const demoRoutes = require('./routes/demo');
+const securityRoutes = require('./routes/security');
+const dashboardRoutes = require('./routes/dashboard');
+const studentRoutes = require('./routes/studentRoutes'); // ✅ same pattern
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // ✅ CORS setup
 app.use(cors({
-  origin: 'http://localhost:3000', // 🔁 Replace with production URL as needed
+  origin: '*',
   credentials: true
 }));
 
@@ -30,21 +39,31 @@ app.use(session({
   }
 }));
 
+// ✅ DB connection test
+pool.query(
+  "SELECT current_database(), current_user, inet_server_addr(), inet_server_port()", 
+  (err, result) => {
+    if (err) {
+      console.error("❌ DB Test Failed:", err);
+    } else {
+      console.log("✅ Connected DB Info:", result.rows[0]);
+    }
+  }
+);
+
 // ✅ Serve static frontend files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ Modular Routes
-app.use('/api', require('./routes/auth')(pool));
-app.use('/api', require('./routes/account')(pool));
-app.use('/api', require('./routes/enquiry')(pool));
-app.use('/api', require('./routes/demo')(pool));
-app.use('/api', require('./routes/student')(pool));
-app.use('/api', require('./routes/security')(pool));
-app.use('/api', require('./routes/dashboard'));
- // placed after pool is available
+app.use('/api', authRoutes(pool));
+app.use('/api', accountRoutes(pool));
+app.use('/api', enquiryRoutes(pool));
+app.use('/api', demoRoutes(pool));
+app.use('/api', securityRoutes(pool));
+app.use('/api', dashboardRoutes); // ⚠️ check if this also needs pool
+app.use('/api', studentRoutes(pool)); // ✅ integrated like enquiry & demo
 
-
-// ✅ Default route to login.html
+// ✅ Default route → login.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });

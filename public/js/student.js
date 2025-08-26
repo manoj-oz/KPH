@@ -1,30 +1,50 @@
-// 📁 student.js
+// ✅ student.js
 import { apiPost } from './api.js';
 
-export async function submitStudentForm() {
-    const data = {
-        enquiryId: document.getElementById('studentEnquiryId').value,
-        fullName: document.getElementById('studentFullName').value,
-        phone: document.getElementById('studentCountryCode').value + document.getElementById('studentPhone').value,
-        email: document.getElementById('studentEmail').value,
-        subject: document.getElementById('studentSubject').value,
-        totalFee: document.getElementById('totalFee').value,
-        paidAmount: document.getElementById('paidAmount').value,
-        pendingAmount: document.getElementById('pendingAmount').value,
-        paymentMode: document.getElementById('paymentMode').value,
-        trainerName: document.getElementById('trainerName').value,
-        comment: document.getElementById('studentComment').value
-    };
+console.log("✅ student.js loaded");
 
-    if (!data.enquiryId || !data.fullName || !data.phone || !data.email || !data.subject || !data.totalFee) {
-        alert('Please fill in all required Student Info fields.');
-        return;
-    }
-
-    try {
-        await apiPost('/student', data);
-        alert('Student info form submitted successfully!');
-    } catch (err) {
-        alert('Submission failed: ' + err.message);
-    }
+// Navigate back
+function goBack() {
+  window.location.href = 'SelectAForm.html';
 }
+
+// Close popup
+function closePopup() {
+  document.getElementById("successPopup").style.display = "none";
+  document.getElementById("studentForm").reset();
+}
+
+// Handle form submission
+async function submitForm(event) {
+  event.preventDefault();
+
+  const data = {
+    fullName: document.getElementById('studentFullName').value,
+    phone: document.getElementById('countryCode').value + document.getElementById('phone').value,
+    email: document.getElementById('studentEmail').value,
+    course: document.getElementById('course').value,
+    totalFee: Number(document.getElementById('totalFee').value),
+    paymentType: document.getElementById('paymentType').value,
+    paidAmount: Number(document.getElementById('paidAmount').value),
+    pendingAmount: Number(document.getElementById('pendingAmount').value),
+    tutorName: document.getElementById('tutorName').value
+  };
+
+  console.log("📦 Data to send:", data);
+
+  try {
+    // Use apiPost from api.js
+    const res =  await apiPost('/students', data);
+    console.log("✅ Server response:", res);
+    document.getElementById("successPopup").style.display = "flex";
+  } catch (err) {
+    alert("❌ Error submitting form. Check console for details.");
+  }
+}
+
+// Attach listener
+document.getElementById('studentForm').addEventListener('submit', submitForm);
+
+// Expose global functions
+window.goBack = goBack;
+window.closePopup = closePopup;

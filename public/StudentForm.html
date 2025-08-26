@@ -1,116 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Information Form</title>
   <link rel="stylesheet" href="styles.css" />
-  <script type="module" src="js/main.js" defer></script>
+  <!-- JS module -->
+  <script type="module" src="./js/student.js" defer></script>
 </head>
+
 <body class="enquiry-page">
   <div class="container">
     <section class="form-section">
-      
+
       <div class="logo-container">
         <img src="KPH.jpg" alt="Logo" class="logo" />
       </div>
+
       <div class="login-box">
         <h2 class="page-heading">STUDENT INFORMATION FORM</h2>
-        <form id="studentInfoFormElement" onsubmit="event.preventDefault(); submitForm('studentInfoForm');">
-          <div class="form-group">
-            <label for="studentEnquiryId">ENQUIRY ID:</label>
-            <div class="input-container">
-              <select id="studentEnquiryId" onchange="autoFillStudentForm()">
-                <option value="" disabled selected>Enquiry ID</option>
-              </select>
-            </div>
-          </div>
+
+        <form id="studentForm">
+          <!-- Full Name -->
           <div class="form-group">
             <label for="studentFullName">FULL NAME:</label>
             <div class="input-container">
-              <input type="text" id="studentFullName" placeholder="Full Name" />
+              <input type="text" id="studentFullName" name="studentFullName" placeholder="Full Name" required />
             </div>
           </div>
-<div class="form-group phone-group">
-            <label for="countryCode" id="countryCodeLabel"></label>
+
+          <!-- Phone -->
+          <div class="form-group phone-group">
+            <label for="countryCode">Phone:</label>
             <div class="phone-input-container">
               <select id="countryCode">
                 <option value="+91" selected>India (+91)</option>
                 <option value="+1">USA (+1)</option>
                 <option value="+44">UK (+44)</option>
               </select>
-              <input type="text" id="phone" name="phone" placeholder="Phone Number" required pattern="^[6-9]\d{9}$"
-                title="Enter a valid 10-digit mobile number" maxlength="10" inputmode="numeric" />
+              <input type="text" id="phone" name="phone" placeholder="Phone Number" pattern="\d{10}" required />
             </div>
           </div>
+
+          <!-- Email -->
           <div class="form-group">
             <label for="studentEmail">EMAIL ID:</label>
             <div class="input-container">
-              <input type="email" id="studentEmail" placeholder="Email ID" />
+              <input type="email" id="studentEmail" name="studentEmail" placeholder="Email ID" required />
             </div>
           </div>
+
+          <!-- Course -->
           <div class="form-group">
-            <label for="studentSubject">SUBJECT:</label>
+            <label for="course">Course:</label>
             <div class="input-container">
-              <input type="text" id="studentSubject" placeholder="Subject" />
+              <select id="course" name="course" required>
+                <option value="" disabled selected hidden>Select Course</option>
+                <option value="Azure Data Engineering">Azure Data Engineering</option>
+                <option value="Snowflake">Snowflake</option>
+                <option value="Azure Data Factory + Snowflake">Azure Data Factory + Snowflake</option>
+                <option value="Power BI">Power BI</option>
+                <option value="Power BI + Snowflake">Power BI + Snowflake</option>
+                <option value="Azure Data Factory">Azure Data Factory</option>
+                <option value="Snowflake Data Engineering">Snowflake Data Engineering</option>
+                <option value="Azure Cloud">Azure Cloud</option>
+                <option value="Azure DevOps">Azure DevOps</option>
+                <option value="AWS Cloud">AWS Cloud</option>
+                <option value="AWS DevOps">AWS DevOps</option>
+                <option value="GCP Cloud">GCP Cloud</option>
+                <option value="GCP DevOps">GCP DevOps</option>
+              </select>
             </div>
           </div>
+
+          <!-- Fees -->
           <div class="form-group">
             <label for="totalFee">TOTAL FEE:</label>
             <div class="input-container">
-              <input type="text" id="totalFee" placeholder="Total Fee" />
+              <input type="number" id="totalFee" name="totalFee" placeholder="Total Fee" required />
             </div>
           </div>
+
           <div class="form-group">
-            <label for="paidAmount">PAID AMOUNT:</label>
+            <label for="paymentType">TYPE OF PAYMENT:</label>
             <div class="input-container">
-              <input type="text" id="paidAmount" placeholder="Paid Amount" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="pendingAmount">PENDING AMOUNT:</label>
-            <div class="input-container">
-              <input type="text" id="pendingAmount" placeholder="Pending Amount" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="paymentMode">MODE OF PAYMENT:</label>
-            <div class="input-container">
-              <select id="paymentMode">
-                <option value="" disabled selected>Select Payment Mode</option>
+              <select id="paymentType" name="paymentType" required>
+                <option value="" disabled selected>Select Type of Payment</option>
                 <option value="Single">Single</option>
                 <option value="Installment">Installment</option>
               </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="trainerName">TRAINER NAME:</label>
+            <label for="paidAmount">PAID AMOUNT:</label>
             <div class="input-container">
-              <input type="text" id="trainerName" placeholder="Trainer Name" />
+              <input type="number" id="paidAmount" name="paidAmount" placeholder="Paid Amount" required />
             </div>
           </div>
+
           <div class="form-group">
-            <label for="studentComment">COMMENT:</label>
+            <label for="pendingAmount">PENDING AMOUNT:</label>
             <div class="input-container">
-              <textarea id="studentComment" placeholder="Comment"></textarea>
+              <input type="number" id="pendingAmount" name="pendingAmount" placeholder="Pending Amount" required />
             </div>
           </div>
+
+          <!-- Tutor -->
+          <div class="form-group">
+            <label for="tutorName">TUTOR NAME:</label>
+            <div class="input-container">
+              <input type="text" id="tutorName" name="tutorName" placeholder="Tutor Name" required />
+            </div>
+          </div>
+
+          <!-- Buttons -->
           <div class="button-container">
             <button type="submit" class="signup-btn">SUBMIT</button>
-            
           </div>
           <div class="button-container">
             <button type="button" class="btn-back" onclick="goBack()">← Back</button>
           </div>
+          <div class="button-container">
+            <button type="button" class="btn-back" onclick="location.href='Student-dashboard.html'">Student Dashboard</button>
+          </div>
         </form>
       </div>
-    
     </section>
   </div>
-  <script>
-    function goBack() {
-      window.location.href = 'SelectAForm.html';
-    }
-  </script>
+
+  <!-- Success Popup -->
+  <div id="successPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+      <h2>🎉 Congratulations!</h2>
+      <p>Student Information submitted successfully.</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
 </body>
 </html>
