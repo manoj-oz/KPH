@@ -48,3 +48,18 @@ document.getElementById('studentForm').addEventListener('submit', submitForm);
 // Expose global functions
 window.goBack = goBack;
 window.closePopup = closePopup;
+
+// Auto-calculate pendingAmount
+const totalFeeInput = document.getElementById('totalFee');
+const paidAmountInput = document.getElementById('paidAmount');
+const pendingAmountInput = document.getElementById('pendingAmount');
+
+function updatePendingAmount() {
+  const total = Number(totalFeeInput.value) || 0;
+  const paid = Number(paidAmountInput.value) || 0;
+  pendingAmountInput.value = total - paid >= 0 ? total - paid : 0;
+}
+
+// Listen for changes
+totalFeeInput.addEventListener('input', updatePendingAmount);
+paidAmountInput.addEventListener('input', updatePendingAmount);
