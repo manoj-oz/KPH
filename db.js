@@ -1,11 +1,24 @@
-require('dotenv').config();
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
-// Use DATABASE_URL if available (Render), else fallback to local .env values
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 
-    `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
-});
+let pool;
+
+if (process.env.NODE_ENV === "azure") {
+  pool = new Pool({
+    host: process.env.PGHOST,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    port: process.env.PGPORT,
+    ssl: { rejectUnauthorized: false }  // ✅ required for Azure PostgreSQL
+  });
+} else {
+  pool = new Pool({
+    host: process.env.LOCAL_DB_HOST,
+    user: process.env.LOCAL_DB_USER,
+    password: process.env.LOCAL_DB_PASSWORD,
+    database: process.env.LOCAL_DB_NAME,
+    port: process.env.LOCAL_DB_PORT,
+  });
+}
 
 module.exports = pool;
