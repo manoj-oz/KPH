@@ -1,5 +1,3 @@
-import { apiAuthGet } from './api-auth.js'; // Auth GET requests
-
 let enquiries = [];
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,11 +12,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// ✅ Fetch from backend (token-authenticated)
+// ✅ Fetch from backend
 async function fetchDataFromDatabase() {
     try {
-        const data = await apiAuthGet('/dashboard/enquiries');
-        if (data.error) throw new Error(data.error);
+        const baseURL = window.location.hostname === 'localhost'
+            ? 'http://localhost:3000'
+            : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
+
+        const response = await fetch(`${baseURL}/api/dashboard/enquiries`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch enquiries');
+        }
+
+        const data = await response.json();
+        console.log("Fetched enquiries:", data);
 
         enquiries = data.map(item => ({
             enquiry_id: item.enquiry_id,
@@ -36,6 +43,7 @@ async function fetchDataFromDatabase() {
             selectLanguage: item.language,
             formDate: item.created_at ? item.created_at.slice(0, 10) : '',
         }));
+
     } catch (error) {
         console.error('Failed to fetch enquiries:', error);
         alert('Error loading data from server.');
@@ -54,6 +62,7 @@ function displayEnquiries() {
         const matchName = enquiry.full_name?.toLowerCase().includes(searchTerm);
         const matchEmail = enquiry.emailId?.toLowerCase().includes(searchTerm);
         const matchPhone = enquiry.phone?.toLowerCase().includes(searchTerm);
+
         return matchDate && (matchName || matchEmail || matchPhone);
     });
 
@@ -108,6 +117,7 @@ function downloadToPDF() {
         const matchName = enquiry.full_name?.toLowerCase().includes(searchTerm);
         const matchEmail = enquiry.emailId?.toLowerCase().includes(searchTerm);
         const matchPhone = enquiry.phone?.toLowerCase().includes(searchTerm);
+
         return matchDate && (matchName || matchEmail || matchPhone);
     });
 

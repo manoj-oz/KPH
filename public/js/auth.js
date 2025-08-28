@@ -1,5 +1,7 @@
-import { apiPost, API_BASE } from './api.js';
+import { apiPost } from './api.js';
 import { showChangePasswordPage } from './ui.js';
+
+const API_BASE_URL = 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
 
 // 🔐 First Login
 export async function firstLogin() {
@@ -19,29 +21,40 @@ export async function firstLogin() {
   }
 
   // ✅ Save user data in localStorage
-  localStorage.setItem('loggedInContact', data.contact);
-  localStorage.setItem('user', JSON.stringify(data.user || {
-    contact: data.contact,
-    role: data.role || 'enquiry', // fallback
-  }));
+// ✅ Store contact for legacy compatibility
+localStorage.setItem('loggedInContact', data.contact);
 
-  if (data.token) {
-    localStorage.setItem('token', data.token);
-  }
+// ✅ Store user object (needed for role-based access)
+localStorage.setItem('user', JSON.stringify(data.user || {
+  contact: data.contact,
+  role: data.role || 'enquiry',  // fallback
+}));
 
-  // ✅ Store access flags
-  localStorage.setItem('accessControls', JSON.stringify({
-    enquiry: data.access_enquiry,
-    demo: data.access_demo,
-    student: data.access_student
-  }));
+// ✅ Store token if your backend returns it
+if (data.token) {
+  localStorage.setItem('token', data.token);
+}
 
-  // ✅ First-time password change flow
+// ✅ Store access flags
+localStorage.setItem('accessControls', JSON.stringify({
+  enquiry: data.access_enquiry,
+  demo: data.access_demo,
+  student: data.access_student
+}));
+
+// ✅ First-time password change flow
+if (data.first_login) {
+  localStorage.setItem('first_login', JSON.stringify(true));
+  showChangePasswordPage();
+} else {
+  localStorage.setItem('first_login', JSON.stringify(false));
+  window.location.href = 'SelectAForm.html';
+}
+
+
   if (data.first_login) {
-    localStorage.setItem('first_login', JSON.stringify(true));
     showChangePasswordPage();
   } else {
-    localStorage.setItem('first_login', JSON.stringify(false));
     window.location.href = 'SelectAForm.html';
   }
 }
@@ -85,7 +98,7 @@ export async function fetchUserInfo() {
   if (!contact) return null;
 
   try {
-    const res = await fetch(`${API_BASE}/api/account/${contact}`);
+    const res = await fetch(`${API_BASE_URL}/api/account/${contact}`);
     if (!res.ok) throw new Error('User fetch failed');
     return await res.json();
   } catch (err) {
@@ -97,7 +110,7 @@ export async function fetchUserInfo() {
 // 📦 Manual Access Refresh (optional)
 export async function storeUserAccess(contact) {
   try {
-    const res = await fetch(`${API_BASE}/api/account/${contact}`);
+    const res = await fetch(`${API_BASE_URL}/api/account/${contact}`);
     if (!res.ok) throw new Error('User access fetch failed');
     const data = await res.json();
 

@@ -1,6 +1,11 @@
 import { firstLogin, changePassword } from './auth.js';
 import { createAccount, generateEmail } from './account.js';
-import { submitEnquiry, API_BASE } from './api.js'; // ✅ import API_BASE
+import { submitEnquiry } from './enquiry.js';
+
+const API_BASE_URL =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
 
 // ✅ Save access controls consistently
 function saveAccessControls(data) {
@@ -33,7 +38,7 @@ async function defaultLogin() {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/api/security-login`, { // ✅ use API_BASE
+    const response = await fetch(`${API_BASE_URL}/api/security-login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -98,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('logoutBtn')?.addEventListener('click', async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/logout`, { // ✅ use API_BASE
+      const response = await fetch(`${API_BASE_URL}/api/logout`, {
         method: 'POST',
         credentials: 'include',
       });
@@ -134,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch(`${API_BASE}/api/forgot-password`, { // ✅ use API_BASE
+      const response = await fetch(`${API_BASE_URL}/api/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contact, dob, new_password: newPassword }),
