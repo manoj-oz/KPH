@@ -40,6 +40,7 @@ enquiryDropdown.addEventListener('change', async () => {
     document.getElementById('phone').value = enquiry.phone || '';
     document.getElementById('demoEmail').value = enquiry.email || '';
     document.getElementById('course').value = enquiry.course || '';
+    
   } catch (err) {
     alert('Failed to fetch enquiry details: ' + err.message);
   }

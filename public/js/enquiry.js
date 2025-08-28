@@ -42,8 +42,7 @@ export async function submitEnquiry() {
       mode: document.getElementById('mode').value,
       batchTiming: document.getElementById('batchTiming').value,
       language: document.getElementById('language').value,
-      status: document.getElementById('status').value,
-      comment: document.getElementById('comment').value
+  
     };
 
     const response = await apiPost('/enquiry', enquiryData);

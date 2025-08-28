@@ -40,9 +40,8 @@ module.exports = (pool) => {
       about,
       mode,
       batchTiming,
-      language,
-      status,
-      comment
+      language
+
     } = req.body;
 
     if (!contact || !fullName || !phone || !enquiryEmail || !enquiryDob || !course) {
@@ -57,16 +56,16 @@ module.exports = (pool) => {
         `INSERT INTO enquiries (
           enquiry_id, full_name, phone, email, dob,
           course, source, education, passed_out_year, about,
-          mode, batch_timing, language, status, comment
+          mode, batch_timing, language
         ) VALUES (
           $1, $2, $3, $4, $5, $6,
           $7, $8, $9, $10, $11,
-          $12, $13, $14, $15
+          $12, $13
         )`,
         [
           enquiryId, fullName, phone, enquiryEmail, enquiryDob,
           course, source, education, passedOutYear, about,
-          mode, batchTiming, language, status, comment
+          mode, batchTiming, language
         ]
       );
 
@@ -84,7 +83,7 @@ module.exports = (pool) => {
         `SELECT 
           enquiry_id, full_name, phone, email, dob,
           course, source, education, passed_out_year, about,
-          mode, batch_timing, language, status, comment
+          mode, batch_timing, language
          FROM enquiries
          ORDER BY enquiry_id DESC`
       );

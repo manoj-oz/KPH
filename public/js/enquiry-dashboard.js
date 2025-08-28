@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchDataFromDatabase().then(() => {
         displayEnquiries();
         document.getElementById('searchInput').addEventListener('input', displayEnquiries);
-        document.getElementById('filterStatus').addEventListener('change', displayEnquiries);
         document.getElementById('dateFilter').addEventListener('change', displayEnquiries);
         document.getElementById('downloadPdfBtn').addEventListener('click', downloadToPDF);
     });
@@ -27,6 +26,7 @@ async function fetchDataFromDatabase() {
 
         const data = await response.json();
         console.log("Fetched enquiries:", data);
+
         enquiries = data.map(item => ({
             enquiry_id: item.enquiry_id,
             full_name: item.full_name,
@@ -41,8 +41,6 @@ async function fetchDataFromDatabase() {
             selectMode: item.mode,
             selectbatch_timing: item.batch_timing,
             selectLanguage: item.language,
-            status: item.status, // not 'Status'
-            comment: item.comment,
             formDate: item.created_at ? item.created_at.slice(0, 10) : '',
         }));
 
@@ -55,23 +53,23 @@ async function fetchDataFromDatabase() {
 function displayEnquiries() {
     const tableBody = document.getElementById('enquiryTableBody');
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const filterStatus = document.getElementById('filterStatus').value;
     const filterDate = document.getElementById('dateFilter').value;
     tableBody.innerHTML = '';
 
     const filtered = enquiries.filter(enquiry => {
         const formDate = enquiry.formDate || '';
         const matchDate = !filterDate || formDate === filterDate;
-        const matchName = enquiry.full_nameName?.toLowerCase().includes(searchTerm);
+        const matchName = enquiry.full_name?.toLowerCase().includes(searchTerm);
         const matchEmail = enquiry.emailId?.toLowerCase().includes(searchTerm);
-        const matchStatus = !filterStatus || enquiry.selectEnquiryStatus === filterStatus;
-        return matchDate && (matchName || matchEmail) && matchStatus;
+        const matchPhone = enquiry.phone?.toLowerCase().includes(searchTerm);
+
+        return matchDate && (matchName || matchEmail || matchPhone);
     });
 
     if (filtered.length === 0) {
         const noDataRow = document.createElement('div');
         noDataRow.className = 'row';
-        noDataRow.innerHTML = `<div class="cell" colspan="15">No matching enquiries found.</div>`;
+        noDataRow.innerHTML = `<div class="cell" colspan="14">No matching enquiries found.</div>`;
         tableBody.appendChild(noDataRow);
         return;
     }
@@ -94,8 +92,6 @@ function displayEnquiries() {
             <div class="cell">${enquiry.selectMode || '-'}</div>
             <div class="cell">${enquiry.selectbatch_timing || '-'}</div>
             <div class="cell">${enquiry.selectLanguage || '-'}</div>
-            <div class="cell">${enquiry.status || '-'}</div>
-            <div class="cell">${enquiry.comment || '-'}</div>
         `;
         tableBody.appendChild(row);
     });
@@ -114,15 +110,15 @@ function downloadToPDF() {
     y += 12;
 
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const filterStatus = document.getElementById('filterStatus').value;
     const filterDate = document.getElementById('dateFilter').value;
 
     const filtered = enquiries.filter(enquiry => {
         const matchDate = !filterDate || enquiry.formDate === filterDate;
-        const matchName = enquiry.fullName?.toLowerCase().includes(searchTerm);
+        const matchName = enquiry.full_name?.toLowerCase().includes(searchTerm);
         const matchEmail = enquiry.emailId?.toLowerCase().includes(searchTerm);
-        const matchStatus = !filterStatus || enquiry.selectEnquiryStatus === filterStatus;
-        return matchDate && (matchName || matchEmail) && matchStatus;
+        const matchPhone = enquiry.phone?.toLowerCase().includes(searchTerm);
+
+        return matchDate && (matchName || matchEmail || matchPhone);
     });
 
     filtered.forEach((enquiry, idx) => {
@@ -146,9 +142,7 @@ function downloadToPDF() {
             ["About", enquiry.selectAbout],
             ["Mode of Classes", enquiry.selectMode],
             ["Batch Timings", enquiry.selectbatch_timing],
-            ["Language", enquiry.selectLanguage],
-            ["Demo Status", enquiry.Status],
-            ["Comment", enquiry.comment]
+            ["Language", enquiry.selectLanguage]
         ];
 
         for (let i = 0; i < FIELDS.length; ++i) {

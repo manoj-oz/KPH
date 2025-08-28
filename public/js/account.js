@@ -20,11 +20,23 @@ export async function createAccount() {
     const result = await apiPost('/create-account', body);
 
     if (result.message) {
-        alert('Account created!');
-        showFirstLogin(); // Or redirect to login.html
+       
+        showPopup(); // 👈 Show the popup instead of alert
+        setTimeout(() => {
+          showFirstLogin();
+        }, 3000);
+         // Or redirect to login.html
     } else {
         alert('Failed: ' + (result.error || 'Unknown'));
     }
+      function showPopup() {
+    document.getElementById('successPopup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('successPopup').style.display = 'none';
+    document.getElementById('enquiryForm').reset();
+  }
 }
 
 

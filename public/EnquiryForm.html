@@ -70,10 +70,24 @@
 
           <!-- Course -->
           <div class="form-group">
-            <label for="course">COURSE OF ENQUIRY:</label>
             <div class="input-container">
-              <input type="text" id="course" name="course" placeholder="Course of Enquiry" required
-                pattern="^[A-Za-z\s]{2,50}$" title="Course should contain only letters and spaces" />
+              <select id="course" name="course" required>
+                <option value="" disabled selected hidden></option>
+                <option value="Azure Data Engineering">Azure Data Engineering</option>
+                <option value="Snowflake">Snowflake</option>
+                <option value="Azure Data Factory + Snowflake">Azure Data Factory + Snowflake</option>
+                <option value="Power BI">Power BI</option>                 
+                <option value="Power BI + Snowflake">Power BI + Snowflake</option>
+                <option value="Azure Data Factory">Azure Data Factory</option>
+                <option value="Snowflake Data Engineering">Snowflake Data Engineering</option>
+                <option value="Azure Cloud">Azure Cloud</option>
+                <option value="Azure DevOps">Azure DevOps</option>
+                <option value="AWS Cloud">AWS Cloud</option>
+                <option value="Aws DevOps">AWS DevOps</option>
+                <option value="GCP Cloud">GCP Cloud</option>
+                <option value="GCP DevOps">GCP DevOps</option>
+              </select>
+              <label for="course">Course</label>
             </div>
           </div>
 
@@ -83,10 +97,10 @@
             <div class="input-container">
               <select id="source" name="source" required>
                 <option value="">Select Source</option>
-                <option value="Walkin">Walkin</option>
+                <option value="Walk-in">Walkin</option>
                 <option value="Board">Board</option>
-                <option value="Add">Ad</option>
-                <option value="Reference">Reference</option>
+                <option value="Advt.">Advt.</option>
+                <option value="Referral">Referral</option>
                 <option value="Social Media">Social Media</option>
               </select>
             </div>
@@ -168,25 +182,7 @@
             </div>
           </div>
 
-          <!-- Status -->
-          <div class="form-group">
-            <label for="status">ENQUIRY STATUS:</label>
-            <div class="input-container">
-              <select id="status" name="status" required>
-                <option value="">Select Enquiry Status</option>
-                <option value="Attended">Attended</option>
-                <option value="Un-attended">Un-attended</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Comment -->
-          <div class="form-group">
-            <label for="comment">COMMENT:</label>
-            <div class="input-container">
-              <textarea id="comment" name="comment" placeholder="Comment"></textarea>
-            </div>
-          </div>
+         
 
           <!-- Submit -->
           <div class="button-container">
