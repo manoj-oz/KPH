@@ -1,6 +1,10 @@
 import { apiPost } from './api.js';
 import { showFirstLogin } from './ui.js';
 
+// ✅ Detect environment automatically
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = isLocalhost ? 'http://localhost:3000' : window.location.origin;
+
 // ✅ Create New Account
 export async function createAccount() {
     const body = {
@@ -17,28 +21,35 @@ export async function createAccount() {
         accessStudent: document.getElementById('access-student').checked
     };
 
-    const result = await apiPost('/create-account', body);
+    try {
+        const result = await fetch(`${API_BASE}/api/create-account`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        }).then(res => res.json());
 
-    if (result.message) {
-       
-        showPopup(); // 👈 Show the popup instead of alert
-        setTimeout(() => {
-          showFirstLogin();
-        }, 3000);
-         // Or redirect to login.html
-    } else {
-        alert('Failed: ' + (result.error || 'Unknown'));
+        if (result.message) {
+            showPopup();
+            setTimeout(() => {
+                showFirstLogin();
+            }, 3000);
+        } else {
+            alert('Failed: ' + (result.error || 'Unknown'));
+        }
+    } catch (err) {
+        console.error('Create account error:', err);
+        alert('❌ Server error. Please try again.');
     }
-      function showPopup() {
-    document.getElementById('successPopup').style.display = 'flex';
-  }
 
-  function closePopup() {
-    document.getElementById('successPopup').style.display = 'none';
-    document.getElementById('enquiryForm').reset();
-  }
+    function showPopup() {
+        document.getElementById('successPopup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('successPopup').style.display = 'none';
+        document.getElementById('enquiryForm').reset();
+    }
 }
-
 
 // ✅ Auto-generate email from first & last name
 export function generateEmail() {

@@ -1,7 +1,5 @@
-import { apiPost } from './api.js';
+import { apiPost, API_BASE } from './api.js';
 import { showChangePasswordPage } from './ui.js';
-
-const API_BASE_URL = 'https://kph-f581.onrender.com';
 
 // 🔐 First Login
 export async function firstLogin() {
@@ -21,40 +19,29 @@ export async function firstLogin() {
   }
 
   // ✅ Save user data in localStorage
-// ✅ Store contact for legacy compatibility
-localStorage.setItem('loggedInContact', data.contact);
+  localStorage.setItem('loggedInContact', data.contact);
+  localStorage.setItem('user', JSON.stringify(data.user || {
+    contact: data.contact,
+    role: data.role || 'enquiry', // fallback
+  }));
 
-// ✅ Store user object (needed for role-based access)
-localStorage.setItem('user', JSON.stringify(data.user || {
-  contact: data.contact,
-  role: data.role || 'enquiry',  // fallback
-}));
+  if (data.token) {
+    localStorage.setItem('token', data.token);
+  }
 
-// ✅ Store token if your backend returns it
-if (data.token) {
-  localStorage.setItem('token', data.token);
-}
+  // ✅ Store access flags
+  localStorage.setItem('accessControls', JSON.stringify({
+    enquiry: data.access_enquiry,
+    demo: data.access_demo,
+    student: data.access_student
+  }));
 
-// ✅ Store access flags
-localStorage.setItem('accessControls', JSON.stringify({
-  enquiry: data.access_enquiry,
-  demo: data.access_demo,
-  student: data.access_student
-}));
-
-// ✅ First-time password change flow
-if (data.first_login) {
-  localStorage.setItem('first_login', JSON.stringify(true));
-  showChangePasswordPage();
-} else {
-  localStorage.setItem('first_login', JSON.stringify(false));
-  window.location.href = 'SelectAForm.html';
-}
-
-
+  // ✅ First-time password change flow
   if (data.first_login) {
+    localStorage.setItem('first_login', JSON.stringify(true));
     showChangePasswordPage();
   } else {
+    localStorage.setItem('first_login', JSON.stringify(false));
     window.location.href = 'SelectAForm.html';
   }
 }
@@ -98,7 +85,7 @@ export async function fetchUserInfo() {
   if (!contact) return null;
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/account/${contact}`);
+    const res = await fetch(`${API_BASE}/api/account/${contact}`);
     if (!res.ok) throw new Error('User fetch failed');
     return await res.json();
   } catch (err) {
@@ -110,7 +97,7 @@ export async function fetchUserInfo() {
 // 📦 Manual Access Refresh (optional)
 export async function storeUserAccess(contact) {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/account/${contact}`);
+    const res = await fetch(`${API_BASE}/api/account/${contact}`);
     if (!res.ok) throw new Error('User access fetch failed');
     const data = await res.json();
 

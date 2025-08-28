@@ -18,7 +18,7 @@ async function fetchDataFromDatabase() {
     try {
         const baseURL = window.location.hostname === 'localhost'
             ? 'http://localhost:3000'
-            : 'https://kph-f581.onrender.com';
+            : 'https://kph-f581.onrender.com'; // ✅ Azure deployed backend URL
 
         const response = await fetch(`${baseURL}/api/dashboard/students`);
         if (!response.ok) {
