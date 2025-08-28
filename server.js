@@ -11,8 +11,8 @@ const accountRoutes = require('./routes/account');
 const enquiryRoutes = require('./routes/enquiry');
 const demoRoutes = require('./routes/demo');
 const securityRoutes = require('./routes/security');
-const dashboardRoutes = require('./routes/dashboard'); // pass pool if needed
-const studentRoutes = require('./routes/studentRoutes'); 
+const dashboardRoutes = require('./routes/dashboard');
+const studentRoutes = require('./routes/studentRoutes'); // ✅ same pattern
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -54,14 +54,14 @@ pool.query(
 // ✅ Serve static frontend files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ Modular Routes (pass pool if route needs DB)
+// ✅ Modular Routes
 app.use('/api', authRoutes(pool));
 app.use('/api', accountRoutes(pool));
 app.use('/api', enquiryRoutes(pool));
 app.use('/api', demoRoutes(pool));
 app.use('/api', securityRoutes(pool));
-app.use('/api', dashboardRoutes(pool)); // pass pool for DB access
-app.use('/api', studentRoutes(pool));
+app.use('/api', dashboardRoutes); // ⚠️ check if this also needs pool
+app.use('/api', studentRoutes(pool)); // ✅ integrated like enquiry & demo
 
 // ✅ Default route → login.html
 app.get('/', (req, res) => {
