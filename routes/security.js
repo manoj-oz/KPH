@@ -18,7 +18,7 @@ module.exports = (pool) => {
         return res.status(400).json({ error: '❌ User not found' });
       }
 
-      const user = result.rows[0];
+      const user = result.rows[0]; 
 
       // Check password
       if (user.password !== password) {

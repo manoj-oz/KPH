@@ -19,9 +19,9 @@ async function submitForm(event) {
   event.preventDefault();
 
   const data = {
-    fullName: document.getElementById('studentFullName').value,
+    fullName: document.getElementById('fullName').value,
     phone: document.getElementById('countryCode').value + document.getElementById('phone').value,
-    email: document.getElementById('studentEmail').value,
+    email: document.getElementById('email').value,
     course: document.getElementById('course').value,
     totalFee: Number(document.getElementById('totalFee').value),
     paymentType: document.getElementById('paymentType').value,
