@@ -18,7 +18,8 @@ async function fetchDataFromDatabase() {
     try {
         const baseURL = window.location.hostname === 'localhost'
             ? 'http://localhost:3000'
-            : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';// ✅ Azure deployed backend
+            : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';// ✅ Azure deployed backend 
+
 
         const response = await fetch(`${baseURL}/api/dashboard/students`);
         if (!response.ok) {
@@ -35,9 +36,9 @@ async function fetchDataFromDatabase() {
             emailId: item.email,
             course: item.course,
             totalFee: item.totalFee,
+            paymentType: item.paymentType,
             paidAmount: item.paidAmount,
             pendingAmount: item.pendingAmount,
-            paymentType: item.paymentType,
             tutorName: item.tutorName,
             formDate: item.created_at ? item.created_at.slice(0, 10) : '',
         }));
@@ -76,21 +77,22 @@ function displayStudents() {
         const row = document.createElement('div');
         row.className = 'row';
         row.innerHTML = `
-            <div class="cell">${idx + 1}</div>
-            <div class="cell">${student.student_id || '-'}</div>
-            <div class="cell">${student.full_name || '-'}</div>
-            <div class="cell">${student.phone || '-'}</div>
-            <div class="cell">${student.emailId || '-'}</div>
-            <div class="cell">${student.course || '-'}</div>
-            <div class="cell">${student.totalFee || '-'}</div>
-            <div class="cell">${student.paidAmount || '-'}</div>
-            <div class="cell">${student.pendingAmount || '-'}</div>
-            <div class="cell">${student.paymentType || '-'}</div>
-            <div class="cell">${student.tutorName || '-'}</div>
-            <div class="cell">${student.formDate || '-'}</div>
-        `;
+        <div class="cell">${idx + 1}</div>
+        <div class="cell">${student.student_id || '-'}</div>
+        <div class="cell">${student.full_name || '-'}</div>
+        <div class="cell">${student.phone || '-'}</div>
+        <div class="cell">${student.emailId || '-'}</div>
+        <div class="cell">${student.course || '-'}</div>
+        <div class="cell">${student.totalFee || '-'}</div>
+        <div class="cell">${student.paymentType || '-'}</div>   <!-- moved UP -->
+        <div class="cell">${student.paidAmount || '-'}</div>
+        <div class="cell">${student.pendingAmount || '-'}</div>
+        <div class="cell">${student.tutorName || '-'}</div>
+        <div class="cell">${student.formDate || '-'}</div>
+    `;
         tableBody.appendChild(row);
     });
+
 }
 
 function downloadToPDF() {
@@ -131,12 +133,13 @@ function downloadToPDF() {
             ["Email", student.emailId],
             ["Course", student.course],
             ["Total Fee", student.totalFee],
+            ["Payment Type", student.paymentType],   // moved UP
             ["Paid Amount", student.paidAmount],
             ["Pending Amount", student.pendingAmount],
-            ["Payment Mode", student.paymentType],
             ["Tutor Name", student.tutorName],
             ["Form Date", student.formDate],
         ];
+
 
         for (let i = 0; i < FIELDS.length; ++i) {
             const label = FIELDS[i][0];
