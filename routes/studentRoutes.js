@@ -19,11 +19,10 @@ module.exports = (pool) => {
       newNumber = lastNumber + 1;
     }
 
-    // STU0001, STU0002, etc.
     return `STU${String(newNumber).padStart(4, "0")}`;
   }
 
-  // ✅ POST /api/students → create a new student
+  // ✅ POST /api/students
   router.post("/students", async (req, res) => {
     try {
       const {
@@ -32,33 +31,21 @@ module.exports = (pool) => {
         email,
         course,
         totalFee,
-        paidAmount,
-        pendingAmount,
-        paymentType,
-        tutorName,
+        paidAmount = 0,
+        pendingAmount = 0,
+        paymentType = null,
+        tutorName = null,
       } = req.body;
 
-      // Validation
-      if (
-        !fullName ||
-        !phone ||
-        !email ||
-        !course ||
-        !totalFee ||
-        !paidAmount ||
-        !pendingAmount ||
-        !paymentType ||
-        !tutorName
-      ) {
+      // ✅ validate only essential fields
+      if (!fullName || !phone || !email || !course || !totalFee) {
         return res
           .status(400)
           .json({ error: "Missing required student fields" });
       }
 
-      // Generate ID
       const studentId = await generateStudentId();
 
-      // Insert into DB
       const result = await pool.query(
         `INSERT INTO students (
           student_id, full_name, phone, email, course, 
@@ -81,9 +68,23 @@ module.exports = (pool) => {
         ]
       );
 
-      return res.status(201).json({
+      // ✅ return camelCase JSON
+      const student = result.rows[0];
+      res.status(201).json({
         message: "✅ Student created successfully",
-        student: result.rows[0],
+        student: {
+          studentId: student.student_id,
+          fullName: student.full_name,
+          phone: student.phone,
+          email: student.email,
+          course: student.course,
+          totalFee: student.total_fee,
+          paidAmount: student.paid_amount,
+          pendingAmount: student.pending_amount,
+          paymentType: student.payment_type,
+          tutorName: student.tutor_name,
+          createdAt: student.created_at,
+        },
       });
     } catch (err) {
       console.error("❌ Error inserting student:", err);
@@ -93,7 +94,7 @@ module.exports = (pool) => {
     }
   });
 
-  // ✅ GET /api/dashboard/students → fetch all students for dashboard
+  // ✅ GET /api/dashboard/students
   router.get("/dashboard/students", async (req, res) => {
     try {
       const result = await pool.query(
@@ -105,7 +106,22 @@ module.exports = (pool) => {
         ORDER BY created_at DESC`
       );
 
-      return res.json(result.rows);
+      // ✅ convert snake_case → camelCase before sending to frontend
+      const students = result.rows.map((s) => ({
+        studentId: s.student_id,
+        fullName: s.full_name,
+        phone: s.phone,
+        email: s.email,
+        course: s.course,
+        totalFee: s.total_fee,
+        paidAmount: s.paid_amount,
+        pendingAmount: s.pending_amount,
+        paymentType: s.payment_type,
+        tutorName: s.tutor_name,
+        createdAt: s.created_at,
+      }));
+
+      res.json(students);
     } catch (err) {
       console.error("❌ Error fetching students:", err);
       return res.status(500).json({ error: "Database error fetching students" });
