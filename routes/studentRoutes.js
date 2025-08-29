@@ -32,9 +32,9 @@ module.exports = (pool) => {
         email,
         course,
         totalFee,
-        paymentType,
         paidAmount,
-        pendingAmount,        
+        pendingAmount,
+        paymentType,
         tutorName,
       } = req.body;
 
@@ -45,9 +45,9 @@ module.exports = (pool) => {
         !email ||
         !course ||
         !totalFee ||
-          !paymentType ||
         !paidAmount ||
-        !pendingAmount ||      
+        !pendingAmount ||
+        !paymentType ||
         !tutorName
       ) {
         return res
@@ -62,8 +62,8 @@ module.exports = (pool) => {
       const result = await pool.query(
         `INSERT INTO students (
           student_id, full_name, phone, email, course, 
-          total_fee, payment_type, paid_amount, pending_amount, 
-           tutor_name, created_at
+          total_fee, paid_amount, pending_amount, 
+          payment_type, tutor_name, created_at
         ) VALUES (
           $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,NOW()
         ) RETURNING *`,
@@ -74,9 +74,9 @@ module.exports = (pool) => {
           email,
           course,
           totalFee,
-          paymentType,
           paidAmount,
-          pendingAmount,          
+          pendingAmount,
+          paymentType,
           tutorName,
         ]
       );
@@ -99,8 +99,8 @@ module.exports = (pool) => {
       const result = await pool.query(
         `SELECT 
           student_id, full_name, phone, email, course, 
-          total_fee, payment_type, paid_amount, pending_amount, 
-           tutor_name, created_at
+          total_fee, paid_amount, pending_amount, 
+          payment_type, tutor_name, created_at
         FROM students
         ORDER BY created_at DESC`
       );
