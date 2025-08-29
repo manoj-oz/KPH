@@ -35,13 +35,14 @@ async function fetchDataFromDatabase() {
             phone: item.phone,
             emailId: item.email,
             course: item.course,
-            totalFee: item.totalFee,
-            paymentType: item.paymentType,
-            paidAmount: item.paidAmount,
-            pendingAmount: item.pendingAmount,
-            tutorName: item.tutorName,
+            totalFee: item.total_fee,
+            paymentType: item.payment_type,         // ✅ from DB
+            paidAmount: item.paid_amount,      // ✅ from DB
+            pendingAmount: item.pending_amount,// ✅ from DB
+            tutorName: item.tutor_name,        // ✅ from DB
             formDate: item.created_at ? item.created_at.slice(0, 10) : '',
         }));
+
 
     } catch (error) {
         console.error('Failed to fetch student details:', error);
