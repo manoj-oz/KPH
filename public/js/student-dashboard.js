@@ -74,24 +74,25 @@ function displayStudents() {
     }
 
     filtered.forEach((student, idx) => {
-        const row = document.createElement('div');
-        row.className = 'row';
-        row.innerHTML = `
-            <div class="cell">${idx + 1}</div>
-            <div class="cell">${student.student_id || '-'}</div>
-            <div class="cell">${student.full_name || '-'}</div>
-            <div class="cell">${student.phone || '-'}</div>
-            <div class="cell">${student.emailId || '-'}</div>
-            <div class="cell">${student.course || '-'}</div>
-            <div class="cell">${student.totalFee || '-'}</div>
-            <div class="cell">${student.paidAmount || '-'}</div>
-            <div class="cell">${student.pendingAmount || '-'}</div>
-            <div class="cell">${student.paymentType || '-'}</div>
-            <div class="cell">${student.tutorName || '-'}</div>
-            <div class="cell">${student.formDate || '-'}</div>
-        `;
-        tableBody.appendChild(row);
-    });
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML = `
+        <div class="cell">${idx + 1}</div>
+        <div class="cell">${student.student_id || '-'}</div>
+        <div class="cell">${student.full_name || '-'}</div>
+        <div class="cell">${student.phone || '-'}</div>
+        <div class="cell">${student.emailId || '-'}</div>
+        <div class="cell">${student.course || '-'}</div>
+        <div class="cell">${student.totalFee || '-'}</div>
+        <div class="cell">${student.paymentType || '-'}</div>   <!-- moved UP -->
+        <div class="cell">${student.paidAmount || '-'}</div>
+        <div class="cell">${student.pendingAmount || '-'}</div>
+        <div class="cell">${student.tutorName || '-'}</div>
+        <div class="cell">${student.formDate || '-'}</div>
+    `;
+    tableBody.appendChild(row);
+});
+
 }
 
 function downloadToPDF() {
@@ -125,19 +126,20 @@ function downloadToPDF() {
         y += 10;
         doc.setFontSize(12);
 
-        const FIELDS = [
-            ["Student ID", student.student_id],
-            ["Full Name", student.full_name],
-            ["Phone", student.phone],
-            ["Email", student.emailId],
-            ["Course", student.course],
-            ["Total Fee", student.totalFee],
-            ["Paid Amount", student.paidAmount],
-            ["Pending Amount", student.pendingAmount],
-            ["Payment Mode", student.paymentType],
-            ["Tutor Name", student.tutorName],
-            ["Form Date", student.formDate],
-        ];
+       const FIELDS = [
+    ["Student ID", student.student_id],
+    ["Full Name", student.full_name],
+    ["Phone", student.phone],
+    ["Email", student.emailId],
+    ["Course", student.course],
+    ["Total Fee", student.totalFee],
+    ["Payment Type", student.paymentType],   // moved UP
+    ["Paid Amount", student.paidAmount],
+    ["Pending Amount", student.pendingAmount],
+    ["Tutor Name", student.tutorName],
+    ["Form Date", student.formDate],
+];
+
 
         for (let i = 0; i < FIELDS.length; ++i) {
             const label = FIELDS[i][0];
