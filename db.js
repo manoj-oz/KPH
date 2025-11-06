@@ -9,7 +9,10 @@ if (process.env.NODE_ENV === "azure") {
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
     port: process.env.PGPORT,
-    ssl: { rejectUnauthorized: false }  // ✅ required for Azure PostgreSQL
+    ssl: {
+      require: true,              // ✅ Enforces SSL encryption
+      rejectUnauthorized: false,  // ✅ Accept Azure’s self-signed certificate
+    },
   });
 } else {
   pool = new Pool({
