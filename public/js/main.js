@@ -5,7 +5,7 @@ import { submitEnquiry } from './enquiry.js';
 const API_BASE_URL =
   window.location.hostname === 'localhost'
     ? 'http://localhost:3000'
-    : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
+    : 'https://kphtrainings-dhcff0c6dsbbcff0.canadacentral-01.azurewebsites.net';
 
 // ✅ Save access controls consistently
 function saveAccessControls(data) {
