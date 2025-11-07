@@ -6,9 +6,11 @@ const isLocal = window.location.hostname === 'localhost' || window.location.host
 // ✅ Backend base URL
 // - Local dev → points to Express server (port 3000)
 // - Production (Azure App Service) → use your Azure URL
+
 export const API_BASE = isLocal 
   ? 'http://localhost:3000'
-  : 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
+  : 'https://kphtrainings-dhcff06dsbbcff0.canadacentral-01.azurewebsites.net';
+
 
 // ✅ Normalize API path (avoids double /api/api)
 function normalizePath(path) {
