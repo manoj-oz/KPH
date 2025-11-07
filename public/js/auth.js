@@ -1,7 +1,8 @@
 import { apiPost } from './api.js';
 import { showChangePasswordPage } from './ui.js';
 
-const API_BASE_URL = 'https://kphforms-d4hvekaegqd2fgcd.centralus-01.azurewebsites.net';
+const API_BASE_URL = 'https://kphtrainings-dhcff0c6dsbbcff0.canadacentral-01.azurewebsites.net';
+
 
 // 🔐 First Login
 export async function firstLogin() {
