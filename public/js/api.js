@@ -8,8 +8,8 @@ const isLocal = window.location.hostname === 'localhost' || window.location.host
 // - Production (Azure App Service) → use your Azure URL
 
 export const API_BASE = isLocal 
-  ? 'http://localhost:3000'
-  : 'https://kphtrainings-dhcff06dsbbcff0.canadacentral-01.azurewebsites.net';
+  ? 'http://localhost:3000' 
+  : 'https://kphtrainings-dhcff0c6dsbbcff0.canadacentral-01.azurewebsites.net';
 
 
 // ✅ Normalize API path (avoids double /api/api)
